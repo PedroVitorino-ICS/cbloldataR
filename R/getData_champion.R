@@ -41,14 +41,14 @@ getData_champion <- function(Role = c("Top","Jungle","Mid","AD Carry","Support")
     dplyr::filter(!stringr::str_detect(value, "Qualifiers")) %>%
     as.list() -> base_edicoes
 
-  # FUN??O PARA MONTAR OS LINKS
+
   montagem_url_edicoes <- function(base){
 
     link <- paste0("https://lol.gamepedia.com",base)
     return(link)
   }
 
-  # LINKS
+
   links_edicoes <- purrr::map(base_edicoes,montagem_url_edicoes)
   links_edicoes <- purrr::flatten_chr(links_edicoes)
 
@@ -105,7 +105,7 @@ getData_champion <- function(Role = c("Top","Jungle","Mid","AD Carry","Support")
       purrr::flatten_chr() -> links_por_role
 
 
-    # PARTE 2: PEGAR AS INFOS POR ROLE
+
     get_roles <- function(url_role) {
 
       xml2::read_html(url_role) %>%
@@ -129,7 +129,7 @@ getData_champion <- function(Role = c("Top","Jungle","Mid","AD Carry","Support")
 
     dat2 <- purrr::map_dfr(links_por_role,get_roles)
 
-    # PARTE 3: OUTRAS INFORMA??ES
+
     dat2 %>%
       dplyr::mutate(info = stringr::str_extract(url, "[0-9]{4}(.*)")) -> dat2
 
