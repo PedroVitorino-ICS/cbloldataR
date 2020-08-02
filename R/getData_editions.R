@@ -1,44 +1,60 @@
-getData_editions <- function(ano = NA){
+#' Harvest CBLOL editions data
+#'
+#' Create a tibble containing Leaguepedia data on each CBLOL edition.
+#' Include: year,tournament, prize pool, winner, runner up and league.
+#'
+#'
+#' @param ano integer.
+#'
+#' @return tibble
+#' @export
+#'
+#' @examples
+#' a <- getData_editions()
+#' b <- getData_editions(ano = c(2020,2018))
+getData_editions <- function(ano = c(2014:2020)){
+  old <- options(warn = 0)
+  options(warn = -1)
 
 
   url = "https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends"
 
-  edicoes <- read_html(url) %>%
-    html_nodes(".wikitable") %>%
-    html_table() %>%
+  edicoes <- xml2::read_html(url) %>%
+    rvest::html_nodes(".wikitable") %>%
+    rvest::html_table() %>%
     .[[1]] %>%
-    mutate(
-      `Runner-Up` = str_sub(`Runner-Up`, start = 3),
-      First = str_sub(First, start = 3),
-      `Prize Pool` =  str_remove(`Prize Pool` , "R+\\$"),
-      `Prize Pool` = str_remove(`Prize Pool`, "BRL \\$ "),
-      `Prize Pool` = str_replace(`Prize Pool`,",","" ),
-      `Prize Pool` = str_trim(`Prize Pool`),
-      Tournament = str_remove(Tournament, "CBLOL [0-9]{4} "),
-      Tournament = str_remove(Tournament, "[0-9]{4}"),
-      Tournament = str_remove(Tournament, "Brazilian "),
-      Tournament = str_trim(Tournament),
-      Year = str_extract(Start,"[0-9]{4}")
+    dplyr::mutate(
+      `Runner-Up` = stringr::str_sub(`Runner-Up`, start = 3),
+      First = stringr::str_sub(First, start = 3),
+      `Prize Pool` =  stringr::str_remove(`Prize Pool` , "R+\\$"),
+      `Prize Pool` = stringr::str_remove(`Prize Pool`, "BRL \\$ "),
+      `Prize Pool` = stringr::str_replace(`Prize Pool`,",","" ),
+      `Prize Pool` = stringr::str_trim(`Prize Pool`),
+      Tournament = stringr::str_remove(Tournament, "CBLOL [0-9]{4} "),
+      Tournament = stringr::str_remove(Tournament, "[0-9]{4}"),
+      Tournament = stringr::str_remove(Tournament, "Brazilian "),
+      Tournament = stringr::str_trim(Tournament),
+      Year = stringr::str_extract(Start,"[0-9]{4}")
     ) %>%
-    select(7,3:6) %>%
-    as_tibble() %>%
-    clean_names() %>%
-    na_if("") %>%
-    na_if("TBD")
+    dplyr::select(7,3:6) %>%
+    tibble::as_tibble() %>%
+    janitor::clean_names() %>%
+    dplyr::na_if("") %>%
+    dplyr::na_if("TBD")
 
-  edicoes$league <- "Brazil"
+
 
   edicoes <- edicoes %>%
-    mutate(year = as.numeric(year),
-           prize_pool = as.numeric(prize_pool))
+    dplyr::mutate(year = as.numeric(year),
+                  prize_pool = as.numeric(prize_pool),
+                  league = "Brazil")
 
-  if (!is.na(ano)){
+
     edicoes <- edicoes %>%
-      filter(year %in% ano)
-  } else{
-    edicoes <- edicoes
-  }
+      dplyr::filter(year %in% ano)
 
+
+
+  on.exit(options(old), add = TRUE)
   return(edicoes)
 }
-
