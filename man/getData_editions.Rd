@@ -4,10 +4,10 @@
 \alias{getData_editions}
 \title{Harvest CBLOL editions data from Leaguepedia}
 \usage{
-getData_editions(ano = c(2014:2020))
+getData_editions(Year = c(2014:2020))
 }
 \arguments{
-\item{ano}{integer.}
+\item{Year}{numeric. The year of the edition you want to access data}
 }
 \value{
 A tibble containing: year, tournament (split/playoff), prize pool (R$), winner, runner up and league.

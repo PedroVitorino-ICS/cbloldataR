@@ -2,7 +2,7 @@
 #'
 #' Creates a tibble containing Leaguepedia data on CBLOL wins per player
 #'
-#' @param playerid character. Its very sensitive and the playerid(s) have to be passed exactly as it is written at https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends
+#' @param playerid character. Its very case sensitive and the playerid(s) have to be passed exactly as it is written in https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends
 #'
 #' @return A tibble containing: player, titles, titles_as_player, titles_as_coach and league.
 #' @export

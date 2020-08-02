@@ -3,7 +3,7 @@
 #' Creates a tibble containing Leaguepedia data on each CBLOL edition.
 #'
 #'
-#' @param Year integer.
+#' @param Year numeric. The year of the edition you want to access data
 #'
 #' @return A tibble containing: year, tournament (split/playoff), prize pool (R$), winner, runner up and league.
 #' @export

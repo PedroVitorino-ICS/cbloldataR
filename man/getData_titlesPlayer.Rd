@@ -4,10 +4,10 @@
 \alias{getData_titlesPlayer}
 \title{Harvest data of CBLOL wins per player from Leaguepedia}
 \usage{
-getData_titlesPlayer(playerid = NULL)
+getData_titlesPlayer(Playerid = NULL)
 }
 \arguments{
-\item{playerid}{character. Its very sensitive and the playerid(s) have to be passed exactly as it is written at https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends}
+\item{playerid}{character. Its very case sensitive and the playerid(s) have to be passed exactly as it is written in https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends}
 }
 \value{
 A tibble containing: player, titles, titles_as_player, titles_as_coach and league.

@@ -1,14 +1,33 @@
-getData_rosters <- function(Playerid = NULL, Team = NULL, Split = c("Split_1","Split_2"), Year = c(2015:2020),Role = c("Top Laner","Jungles","Mid Laner","Bot Laner","Support","Coach")) {
+#' Harvest data of CBLOL rosters from Leaguepedia
+#'
+#' Creates a tibble containing Leaguepedia data on CBLOL rosters on each edition
+#'
+#' @param Playerid character.  Its very case sensitive and the playerid(s) have to be passed exactly as it is written at Leaguepedia
+#' @param Team character. Its very case sensitive and the name(s) have to be passed exactly as it is written at Leaguepedia
+#' @param Split character. Use if you want to specify a Split: "Split_1" or "Split_2".
+#' @param Year numeric. The year of the edition you want to access data
+#' @param Role character. Use if you want to specify one or more roles: "Top Laner", "Jungler", "Mid Laner", "Bot Laner", "Support" or "Coach".
+#'
+#' @return A tibble containing: country, playerid (id), name, team, year, split, role and league. If there is no data for the entry you specified it will return a message saying "There is no data for this entry".
+#'
+#' @export
+#'
+#' @examples
+#' a <- getData_rosters()
+#' b <- getData_rosters(Year = 2020,Split = "Split_1")
+#' c <- getData_rosters(Playerid = "brTT")
+#' d <- getData_rosters(Team = "INTZ",Role = "Coach")
+getData_rosters <- function(Playerid = NULL, Team = NULL, Split = c("Split_1", "Split_2"), Year = c(2015:2020), Role = c("Top Laner", "Jungler", "Mid Laner", "Bot Laner", "Support", "Coach")) {
   message("It may take a while...")
 
-  url = "https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends"
+  url <- "https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends"
 
   old <- options(warn = 0)
   options(warn = -1)
 
 
 
-  ######## PARTE 1 ###############
+
   xml2::read_html(url) %>%
     rvest::html_nodes("td") %>%
     rvest::html_nodes("a") %>%
@@ -20,13 +39,13 @@ getData_rosters <- function(Playerid = NULL, Team = NULL, Split = c("Split_1","S
     dplyr::filter(!stringr::str_detect(value, "Qualifiers")) %>%
     as.list() -> base_edicoes
 
-  # FUN??O PARA MONTAR OS LINKS
+
   montagem_url_edicoes <- function(base) {
     link <- paste0("https://lol.gamepedia.com", base)
     return(link)
   }
 
-  # LINKS
+
   links_edicoes <- purrr::map(base_edicoes, montagem_url_edicoes)
   links_edicoes <- purrr::flatten_chr(links_edicoes)
 
@@ -36,7 +55,7 @@ getData_rosters <- function(Playerid = NULL, Team = NULL, Split = c("Split_1","S
     purrr::flatten_chr() -> links_edicoes
 
 
-  #### ELENCOS
+
   links_elencos <- tibble::as_tibble(paste0(links_edicoes, "/Team_Rosters"))
 
   links_elencos %>%
@@ -46,18 +65,10 @@ getData_rosters <- function(Playerid = NULL, Team = NULL, Split = c("Split_1","S
     as.list() %>%
     purrr::flatten_chr() -> links_elencos
 
-  ################### PARTE 2 #################################
+
 
 
   equipes_cblol <- function(url) {
-
-
-
-    ######### PARTE 1 #################
-
-
-
-    # Equipes
     xml2::read_html(url) %>%
       rvest::html_nodes("h3") %>%
       rvest::html_nodes("span") %>%
@@ -70,15 +81,14 @@ getData_rosters <- function(Playerid = NULL, Team = NULL, Split = c("Split_1","S
       as.list() %>%
       purrr::flatten_chr() -> equipes
 
-    # Tabelas
+
     xml2::read_html(url) %>%
       rvest::html_nodes("div.wide-content-scroll") %>%
       rvest::html_nodes("table") %>%
       rvest::html_table(fill = TRUE) -> tables
 
 
-    ######### PARTE 2 #################
-    # Fun??o para os elencos
+
     time <- function(equipe, tabela) {
       tabela <- tabela[c(1, 4, 5)]
 
@@ -94,9 +104,13 @@ getData_rosters <- function(Playerid = NULL, Team = NULL, Split = c("Split_1","S
     elenco <- purrr::map2_dfr(.x = equipes, .y = tables, .f = time)
 
     elenco %>%
-      dplyr::mutate(year = stringr::str_extract(url, "[0-9]{4}"),
-                    split = stringr::str_extract(url,
-                                                 "Split_[0-9]")) -> elenco
+      dplyr::mutate(
+        year = stringr::str_extract(url, "[0-9]{4}"),
+        split = stringr::str_extract(
+          url,
+          "Split_[0-9]"
+        )
+      ) -> elenco
 
     xml2::read_html(url) %>%
       rvest::html_node("table") %>%
@@ -122,31 +136,28 @@ getData_rosters <- function(Playerid = NULL, Team = NULL, Split = c("Split_1","S
 
 
   elencos <- elencos %>%
-    dplyr::mutate(league = "CBLOL",
-           team = stringr::str_sub(team, start = 3),
-           year = as.numeric(year))
+    dplyr::mutate(
+      league = "CBLOL",
+      team = stringr::str_sub(team, start = 3),
+      year = as.numeric(year)
+    )
 
 
-  if(!is.null(Playerid)){
+  if (!is.null(Playerid)) {
     elencos <- elencos %>%
       dplyr::filter(year %in% Year) %>%
       dplyr::filter(role %in% Role) %>%
       dplyr::filter(id %in% Playerid) %>%
       dplyr::filter(split %in% Split) %>%
       tibble::as_tibble()
-
-
-  } else if(!is.null(Team)){
-
+  } else if (!is.null(Team)) {
     elencos <- elencos %>%
       dplyr::filter(year %in% Year) %>%
       dplyr::filter(role %in% Role) %>%
       dplyr::filter(split %in% Split) %>%
       dplyr::filter(team %in% Team) %>%
       tibble::as_tibble()
-
-
-  }  else if(!is.null(Playerid) & !is.null(Team)){
+  } else if (!is.null(Playerid) & !is.null(Team)) {
     elencos <- elencos %>%
       dplyr::filter(year %in% Year) %>%
       dplyr::filter(role %in% Role) %>%
@@ -157,7 +168,7 @@ getData_rosters <- function(Playerid = NULL, Team = NULL, Split = c("Split_1","S
   } else {
     elencos <- elencos %>%
       dplyr::filter(year %in% Year) %>%
-      dplyr::filter(role %in% Role)%>%
+      dplyr::filter(role %in% Role) %>%
       dplyr::filter(split %in% Split) %>%
       tibble::as_tibble()
   }
@@ -166,12 +177,11 @@ getData_rosters <- function(Playerid = NULL, Team = NULL, Split = c("Split_1","S
 
   on.exit(options(old), add = TRUE)
 
-  if(nrow(elencos) == 0){
+  if (nrow(elencos) == 0) {
     message("There is no data for this entry")
-  } else{
+  } else {
     return(elencos)
   }
-
 }
 
 
