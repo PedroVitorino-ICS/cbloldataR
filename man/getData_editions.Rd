@@ -10,11 +10,10 @@ getData_editions(ano = c(2014:2020))
 \item{ano}{integer.}
 }
 \value{
-tibble
+A tibble containing: year,tournament(split/playoff), prize pool(R$), winner, runner up and league.
 }
 \description{
 Creates a tibble containing Leaguepedia data on each CBLOL edition.
-Include: year,tournament, prize pool, winner, runner up and league.
 }
 \examples{
 a <- getData_editions()
