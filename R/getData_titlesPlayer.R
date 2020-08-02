@@ -11,7 +11,7 @@
 #' a <- getData_titlesPlayer()
 #' b <- getData_titlesPlayer(playerid = "brTT")
 #' c <- getData_titlesPlayer(playerid = c("Kami","brTT"))
-getData_titlesPlayer <- function(playerid = NULL) {
+getData_titlesPlayer <- function(Playerid = NULL) {
   url <- "https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends"
 
   player <- xml2::read_html(url) %>%
@@ -29,9 +29,9 @@ getData_titlesPlayer <- function(playerid = NULL) {
 
   player$league <- "CBLOL"
 
-  if (!is.null(playerid)) {
+  if (!is.null(Playerid)) {
     player <- player %>%
-      dplyr::filter(player %in% playerid)
+      dplyr::filter(player %in% Playerid)
   } else {
     player <- player
   }

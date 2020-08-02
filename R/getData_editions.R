@@ -3,7 +3,7 @@
 #' Creates a tibble containing Leaguepedia data on each CBLOL edition.
 #'
 #'
-#' @param ano integer.
+#' @param Year integer.
 #'
 #' @return A tibble containing: year, tournament (split/playoff), prize pool (R$), winner, runner up and league.
 #' @export
@@ -11,7 +11,7 @@
 #' @examples
 #' a <- getData_editions()
 #' b <- getData_editions(ano = c(2020,2018))
-getData_editions <- function(ano = c(2014:2020)){
+getData_editions <- function(Year = c(2014:2020)){
   old <- options(warn = 0)
   options(warn = -1)
 
@@ -50,7 +50,7 @@ getData_editions <- function(ano = c(2014:2020)){
 
 
     edicoes <- edicoes %>%
-      dplyr::filter(year %in% ano)
+      dplyr::filter(year %in% Year)
 
 
 
