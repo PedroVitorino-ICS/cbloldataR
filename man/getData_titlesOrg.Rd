@@ -7,13 +7,13 @@
 getData_titlesOrg(Team = NULL)
 }
 \arguments{
-\item{Team}{character. Its very sensitive and the names have to be passed exactly as it is written at https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends}
+\item{Team}{character. Its very sensitive and the name(s) have to be passed exactly as it is written at https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends}
 }
 \value{
 A tibble containing: team, x1st_place, x2nd_place, x3rd_4th_place, league
 }
 \description{
-Creates a tibble containing Leaguepedia data CBLOL wins per Organization
+Creates a tibble containing Leaguepedia data on CBLOL wins per Organization
 }
 \examples{
 a <- getData_titlesOrg()
