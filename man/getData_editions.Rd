@@ -13,7 +13,7 @@ getData_editions(ano = c(2014:2020))
 tibble
 }
 \description{
-Create a tibble containing Leaguepedia data on each CBLOL edition.
+Creates a tibble containing Leaguepedia data on each CBLOL edition.
 Include: year,tournament, prize pool, winner, runner up and league.
 }
 \examples{
