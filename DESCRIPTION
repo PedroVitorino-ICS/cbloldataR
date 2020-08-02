@@ -2,13 +2,8 @@ Package: cbloldataR
 Type: Package
 Title: A Package For Acquiring And Visuzalizing Data Of CBLOL From Leaguepedia
 Version: 0.0.0.9000
-Author: Pedro D. Rocha
-Maintainer: person("Pedro", "Rocha", email = "pedro.diniz.rocha@gmail.com", role = c("aut", "cre"))
-Description: This packages offers a set of functions aimed for harvesting data of CBLOL from Leaguepedia. 
-    It was originally created as an exercise for practising Web Scrapping, data cleaning and package creation.
-    In the end, the functions available here facilitate access to CBLOL stats and, therefore, may help 
-    journalists, analysts or enthusiasts to work and visualize data from CBLOL within R. 
-    
+Authors@R: person("Pedro", "Rocha", email = "pedro.diniz.rocha@gmail.com", role = c("aut", "cre"))
+Description: This packages offers a set of functions aimed for harvesting data of CBLOL from Leaguepedia. It was originally created as an exercise for practising Web Scrapping, data cleaning and package creation. In the end, the functions available here facilitate access to CBLOL stats and, therefore, may help journalists, analysts or enthusiasts to work and visualize data from CBLOL within R. 
 License: CC BY-SA 3.0
 Encoding: UTF-8
 LazyData: true
@@ -20,3 +15,5 @@ Imports:
     tibble (>= 3.0.3),
     rvest (>= 0.3.6),
     janitor (>= 2.0.1)
+
+
