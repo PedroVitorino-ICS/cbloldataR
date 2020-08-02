@@ -1,11 +1,11 @@
-#' Harvest CBLOL editions data
+#' Harvest CBLOL editions data from Leaguepedia
 #'
 #' Creates a tibble containing Leaguepedia data on each CBLOL edition.
 #'
 #'
 #' @param ano integer.
 #'
-#' @return A tibble containing: year,tournament(split/playoff), prize pool(R$), winner, runner up and league.
+#' @return A tibble containing: year, tournament (split/playoff), prize pool (R$), winner, runner up and league.
 #' @export
 #'
 #' @examples

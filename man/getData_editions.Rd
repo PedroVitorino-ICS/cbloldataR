@@ -2,7 +2,7 @@
 % Please edit documentation in R/getData_editions.R
 \name{getData_editions}
 \alias{getData_editions}
-\title{Harvest CBLOL editions data}
+\title{Harvest CBLOL editions data from Leaguepedia}
 \usage{
 getData_editions(ano = c(2014:2020))
 }
@@ -10,7 +10,7 @@ getData_editions(ano = c(2014:2020))
 \item{ano}{integer.}
 }
 \value{
-A tibble containing: year,tournament(split/playoff), prize pool(R$), winner, runner up and league.
+A tibble containing: year, tournament (split/playoff), prize pool (R$), winner, runner up and league.
 }
 \description{
 Creates a tibble containing Leaguepedia data on each CBLOL edition.
