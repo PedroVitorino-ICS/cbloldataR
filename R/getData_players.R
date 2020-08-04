@@ -197,6 +197,22 @@ getData_players <- function(Role = c("Top","Jungle","Mid","AD Carry","Support"),
   on.exit(options(old), add = TRUE)
 
 
+  estatistica_jogadores_geral <- estatistica_jogadores_geral %>%
+    dplyr::mutate(g = as.numeric(g),
+                  w = as.numeric(w),
+                  l = as.numeric(l),
+                  k = as.numeric(k),
+                  d = as.numeric(d),
+                  a = as.numeric(a),
+                  kda = as.numeric(kda),
+                  cs = as.numeric(cs),
+                  cs_m = as.numeric(cs_m),
+                  g_2 = as.numeric(g_2),
+                  g_m = as.numeric(g_m),
+                  cp = as.numeric(cp),
+                  year = as.numeric(year))
+
+
 
   if (nrow(estatistica_jogadores_geral) == 0) {
     message("There is no data for this entry")
