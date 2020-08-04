@@ -35,15 +35,13 @@ library(cbloldataR)
 
 ## Use
 
-The package offer access to tables of tidy data that you can harvest
+The package offer access to tidy tables of data that you can harvest
 from
 [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends).
 
-1)  `getData_editions()`: creates a tibble containing
-    [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends)
-    data on each CBLOL edition.
-
-<!-- end list -->
+**1)** `getData_editions()`: creates a tibble containing
+[Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends)
+data on each CBLOL edition.
 
 ``` r
 editions <- getData_editions()
@@ -58,11 +56,9 @@ glimpse(editions)
 #> $ league     <chr> "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL", "C...
 ```
 
-2)  `getData_titlesOrg()`: Creates a tibble containing
-    [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends)
-    data on CBLOL tournament wins per Organization.
-
-<!-- end list -->
+**2)** `getData_titlesOrg()`: Creates a tibble containing
+[Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends)
+data on CBLOL tournament wins per Organization.
 
 ``` r
 titlesOrg <- getData_titlesOrg()
@@ -76,11 +72,9 @@ glimpse(titlesOrg)
 #> $ league         <chr> "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL"...
 ```
 
-3)  `getData_titlesPlayer()`: Creates a tibble containing
-    [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends)
-    data on CBLOL tournament wins per player
-
-<!-- end list -->
+**3)** `getData_titlesPlayer()`: Creates a tibble containing
+[Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends)
+data on CBLOL tournament wins per player.
 
 ``` r
 titlesPlayer <- getData_titlesPlayer()
@@ -94,11 +88,9 @@ glimpse(titlesPlayer)
 #> $ league           <chr> "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLO...
 ```
 
-4)  `getData_rosters()`: Creates a tibble containing
-    [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends)
-    data on CBLOL rosters on each edition
-
-<!-- end list -->
+**4)** `getData_rosters()`: Creates a tibble containing
+[Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends)
+data on CBLOL rosters on each edition.
 
 ``` r
 rosters <- getData_rosters(Team = "paiN Gaming", Role = "Support")
@@ -121,11 +113,9 @@ rosters %>%
 #> 10 EU      Dioud      Hugo Padioleau      paiN Gaming  2015 Split~ Suppo~ CBLOL
 ```
 
-5)  `getData_games()`: Creates a tibble containing
-    [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends)
-    data on CBLOL official games.
-
-<!-- end list -->
+**5)** `getData_games()`: Creates a tibble containing
+[Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends)
+data on CBLOL official games.
 
 ``` r
 # You can specify the Year and Split...
@@ -171,11 +161,9 @@ glimpse(games2)
 #> $ league      <chr> "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL", "...
 ```
 
-6)  `getData_champion()`: Creates a tibble containing
-    [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends)
-    data on champions played in CBLOL official games
-
-<!-- end list -->
+**6)** `getData_champion()`: Creates a tibble containing
+[Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends)
+data on champions played in CBLOL official games.
 
 ``` r
 champion <- getData_champion(Role = "Mid",
@@ -208,7 +196,76 @@ glimpse(champion)
 #> $ league   <chr> "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBL...
 ```
 
-\[…\]
+**7)** `getData_players()`: Creates a tibble containing
+[Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends)
+data of players in CBLOL official games.
+
+``` r
+players <- getData_players(Role = "AD Carry",
+                           Year = 2020,
+                           Split = "Split_2")
+#> Be patient, it may take a while...
+glimpse(players)
+#> Rows: 13
+#> Columns: 22
+#> $ player <chr> "BrTT", "MicaO", "Garo", "DudsTheBoy", "Bvoy", "Alternative"...
+#> $ team   <chr> "PaiN Gaming", "INTZ", "Prodigy Esports", "KaBuM! e-Sports",...
+#> $ role   <chr> "AD Carry", "AD Carry", "AD Carry", "AD Carry", "AD Carry", ...
+#> $ g      <dbl> 18, 18, 18, 16, 15, 15, 10, 10, 8, 8, 3, 3, 2
+#> $ w      <dbl> 12, 11, 8, 10, 8, 6, 6, 4, 3, 2, 1, 0, 1
+#> $ l      <dbl> 6, 7, 10, 6, 7, 9, 4, 6, 5, 6, 2, 3, 1
+#> $ wr     <chr> "66.7%", "61.1%", "44.4%", "62.5%", "53.3%", "40%", "60%", "...
+#> $ k      <dbl> 4.28, 2.83, 3.33, 4.00, 5.87, 4.20, 2.50, 3.50, 2.88, 1.38, ...
+#> $ d      <dbl> 2.06, 2.67, 2.28, 3.00, 2.27, 3.40, 1.90, 3.20, 3.13, 2.50, ...
+#> $ a      <dbl> 6.56, 4.61, 6.56, 7.94, 6.33, 5.27, 6.60, 4.20, 3.50, 3.13, ...
+#> $ kda    <dbl> 5.27, 2.79, 4.34, 3.98, 5.38, 2.78, 4.79, 2.41, 2.04, 1.80, ...
+#> $ cs     <dbl> 290.72, 264.89, 245.94, 278.25, 333.47, 254.27, 259.60, 277....
+#> $ cs_m   <dbl> 9.25, 8.40, 7.25, 8.13, 9.43, 7.94, 8.57, 8.44, 8.59, 8.92, ...
+#> $ g_2    <dbl> 14.1, 12.7, 13.1, 14.4, 16.3, 13.0, 12.0, 13.7, 13.0, 11.6, ...
+#> $ g_m    <dbl> 450, 403, 385, 421, 460, 406, 395, 415, 403, 377, 394, 377, 425
+#> $ kpar   <chr> "67.2%", "60.9%", "68.7%", "72.6%", "75.3%", "70%", "61.5%",...
+#> $ ks     <chr> "26.6%", "23.2%", "23.2%", "24.3%", "36.2%", "31%", "16.9%",...
+#> $ gs     <chr> "24.3%", "22.8%", "21.9%", "23.4%", "26%", "23.3%", "22.2%",...
+#> $ cp     <dbl> 10, 8, 8, 7, 7, 7, 5, 5, 5, 5, 3, 3, 1
+#> $ year   <dbl> 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, ...
+#> $ split  <chr> "Split_2", "Split_2", "Split_2", "Split_2", "Split_2", "Spli...
+#> $ league <chr> "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL...
+```
+
+**8)** `getData_playersChampion()`: Creates a tibble containing
+[Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends)
+data of players per Champion played in official games of CBLOL.
+
+``` r
+players_champion <- getData_playersChampion(Role = "Jungle",
+                                            Split = "Split_2",
+                                            Year = 2020)
+#> Be patient, it may take a while...
+glimpse(players_champion)
+#> Rows: 70
+#> Columns: 21
+#> $ player   <chr> "Cariok", "Cariok", "Cariok", "Cariok", "Cariok", "Cariok"...
+#> $ role     <chr> "Jungle", "Jungle", "Jungle", "Jungle", "Jungle", "Jungle"...
+#> $ year     <dbl> 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020, 2020...
+#> $ split    <chr> "Split_2", "Split_2", "Split_2", "Split_2", "Split_2", "Sp...
+#> $ champion <chr> "Graves", "Lee Sin", "Olaf", "Volibear", "Trundle", "Wukon...
+#> $ g        <dbl> 5, 4, 3, 2, 2, 1, 1, 4, 4, 3, 2, 2, 1, 1, 1, 5, 3, 3, 3, 2...
+#> $ w        <dbl> 5, 2, 3, 1, 0, 1, 0, 4, 2, 3, 1, 0, 1, 0, 0, 4, 3, 2, 1, 0...
+#> $ l        <dbl> 0, 2, 0, 1, 2, 0, 1, 0, 2, 0, 1, 2, 0, 1, 1, 1, 0, 1, 2, 2...
+#> $ wr       <chr> "100%", "50%", "100%", "50%", "0%", "100%", "0%", "100%", ...
+#> $ k        <dbl> 5.00, 3.75, 5.33, 1.50, 2.50, 2.00, 1.00, 5.25, 2.00, 7.00...
+#> $ d        <dbl> 1.00, 3.75, 0.67, 2.00, 2.00, 3.00, 4.00, 0.75, 2.75, 1.00...
+#> $ a        <dbl> 8.80, 7.25, 6.67, 5.50, 7.00, 11.00, 6.00, 6.50, 14.25, 7....
+#> $ kda      <dbl> 13.80, 2.93, 18.00, 3.50, 4.75, 4.33, 1.75, 15.67, 5.91, 1...
+#> $ cs       <dbl> 225.80, 164.50, 186.33, 148.50, 161.00, 227.00, 166.00, 20...
+#> $ cs_m     <dbl> 7.12, 5.22, 6.20, 6.13, 4.53, 5.18, 6.06, 7.03, 4.26, 5.21...
+#> $ g_2      <dbl> 12.8, 10.5, 11.4, 7.9, 10.4, 14.3, 8.5, 12.0, 12.4, 12.4, ...
+#> $ g_m      <dbl> 402, 333, 380, 326, 292, 326, 309, 410, 294, 375, 323, 337...
+#> $ kpar     <chr> "69%", "74.6%", "73.5%", "56%", "70.4%", "61.9%", "77.8%",...
+#> $ ks       <chr> "25%", "25.4%", "32.7%", "12%", "18.5%", "9.5%", "11.1%", ...
+#> $ gs       <chr> "20.4%", "18.8%", "19.6%", "18.1%", "17%", "17.5%", "18.6%...
+#> $ league   <chr> "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBL...
+```
 
 ### Notes
 
