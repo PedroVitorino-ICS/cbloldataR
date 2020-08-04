@@ -3,7 +3,7 @@
 #' Creates a tibble containing Leaguepedia data on each CBLOL edition.
 #'
 #' @param Split (character) The split you want to access data: "Split 1", "Split 2", "Split 1 Playoffs" or "Split 2 Playoffs".
-#' @param Year numeric. The year of the edition you want to access data
+#' @param Year (numeric) The year you want to access data
 #'
 #' @return A tibble containing: year, tournament (split/playoff), prize pool (R$), winner, runner up and league.
 #' @export
