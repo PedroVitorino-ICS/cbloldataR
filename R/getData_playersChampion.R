@@ -1,6 +1,6 @@
 #' Harvest from Leaguepedia data of players per Champion played in games of CBLOL
 #'
-#' Creates a tibble containing Leaguepedia data of players of players per Champion played in games of CBLOL
+#' Creates a tibble containing Leaguepedia data of players  per Champion played in games of CBLOL
 #'
 #' @param Role (character) The lane of the player. It should contain at least one of the five roles: "Top", "Jungle", "Mid", "AD Carry" and "Support".
 #' @param Year (numeric) The year you want to access data.

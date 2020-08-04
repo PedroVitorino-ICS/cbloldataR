@@ -27,7 +27,7 @@ getData_playersChampion(
 A tibble containing: player, role, year, split, champion, number of games played with the champion, victories, defeats, win rate, kills, deaths, assists, KDA, CS per game, CS per minute, gold per game, gold per minute, kill participation, percentage of kills/team, percentage of gold/team and league.
 }
 \description{
-Creates a tibble containing Leaguepedia data of players of players per Champion played in games of CBLOL
+Creates a tibble containing Leaguepedia data of players  per Champion played in games of CBLOL
 }
 \examples{
 a <- getData_playersChampion()
