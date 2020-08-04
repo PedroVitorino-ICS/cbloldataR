@@ -11,11 +11,11 @@ getData_games(
 )
 }
 \arguments{
-\item{Team}{character. Its very case sensitive and the name(s) have to be passed exactly as it is written in Leaguepedia}
+\item{Team}{(character) Its very case sensitive and the name(s) have to be passed exactly as it is written in Leaguepedia}
 
-\item{Year}{numeric. The year of the edition you want to access data.}
+\item{Year}{(numeric) The year of the edition you want to access data.}
 
-\item{Split}{character. Use if you want to specify a Split: "Split_1", "Split_2", "Split_1_Playoffs","Split_2_Playoffs"}
+\item{Split}{(character) Use if you want to specify a Split: "Split_1", "Split_2", "Split_1_Playoffs","Split_2_Playoffs"}
 }
 \value{
 A tibble containing: date, split, patch, blue team, red team, winner, bans blue, bans red, picks blue, picks red, blue roster, red roster and league.

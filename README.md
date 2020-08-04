@@ -39,8 +39,9 @@ The package offer access to eight tables of tidy data that you can
 harvest from
 [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends).
 
-1)  `getData_editions()`: creates a tibble containing Leaguepedia data
-    on each CBLOL edition.
+1)  `getData_editions()`: creates a tibble containing
+    [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends)
+    data on each CBLOL edition.
 
 <!-- end list -->
 
@@ -57,8 +58,9 @@ glimpse(editions)
 #> $ league     <chr> "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL", "C...
 ```
 
-2)  `getData_titlesOrg()`: Creates a tibble containing Leaguepedia data
-    on CBLOL tournament wins per Organization.
+2)  `getData_titlesOrg()`: Creates a tibble containing
+    [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends)
+    data on CBLOL tournament wins per Organization.
 
 <!-- end list -->
 
@@ -73,6 +75,53 @@ glimpse(titlesOrg)
 #> $ x3rd_4th_place <chr> "2", "3", "5", "4", "0", "2", "0", "0", "4", "0", "1...
 #> $ league         <chr> "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL"...
 ```
+
+3)  `getData_titlesPlayer()`: Creates a tibble containing
+    [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends)
+    data on CBLOL tournament wins per player
+
+<!-- end list -->
+
+``` r
+titlesPlayer <- getData_titlesPlayer()
+glimpse(titlesPlayer)
+#> Rows: 62
+#> Columns: 5
+#> $ player           <chr> "brTT", "Tockers", "Mylon", "micaO", "Revolta", "J...
+#> $ titles           <int> 5, 4, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,...
+#> $ titles_as_player <chr> "5", "4", "3", "3", "3", "3", "3", "2", "2", "2", ...
+#> $ titles_as_coach  <chr> "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", ...
+#> $ league           <chr> "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLO...
+```
+
+4)  `getData_rosters()`: Creates a tibble containing
+    [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends)
+    data on CBLOL rosters on each edition
+
+<!-- end list -->
+
+``` r
+rosters1 <- getData_rosters(Team = "paiN Gaming", Role = "Support")
+#> It may take a while...
+
+rosters1 %>% 
+  slice(1:10)
+#> # A tibble: 10 x 8
+#>    country id         name                team         year split  role   league
+#>    <chr>   <chr>      <chr>               <chr>       <dbl> <chr>  <chr>  <chr> 
+#>  1 KR      Key        Kim Han-gi (<U+AE40><U+D55C><U+AE30>) paiN Gaming  2020 Split~ Suppo~ CBLOL 
+#>  2 BR      esA        Eidi Yanagimachi    paiN Gaming  2020 Split~ Suppo~ CBLOL 
+#>  3 BR      esA        Eidi Yanagimachi    paiN Gaming  2019 Split~ Suppo~ CBLOL 
+#>  4 BR      Loop       Caio Almeida        paiN Gaming  2018 Split~ Suppo~ CBLOL 
+#>  5 BR      Loop       Caio Almeida        paiN Gaming  2017 Split~ Suppo~ CBLOL 
+#>  6 BR      Loop       Caio Almeida        paiN Gaming  2017 Split~ Suppo~ CBLOL 
+#>  7 BR      Picoca     Matheus Tavares     paiN Gaming  2016 Split~ Suppo~ CBLOL 
+#>  8 BR      Ziriguidun Pedro Vilarinho     paiN Gaming  2016 Split~ Suppo~ CBLOL 
+#>  9 EU      Dioud      Hugo Padioleau      paiN Gaming  2015 Split~ Suppo~ CBLOL 
+#> 10 EU      Dioud      Hugo Padioleau      paiN Gaming  2015 Split~ Suppo~ CBLOL
+```
+
+\[…\]
 
 ### Notes
 
