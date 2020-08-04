@@ -72,14 +72,34 @@ glimpse(titlesPlayer)
 4) `getData_rosters()`: Creates a tibble containing [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends) data on CBLOL rosters on each edition
 
 ```{r rosters}
-rosters1 <- getData_rosters(Team = "paiN Gaming", Role = "Support")
+rosters <- getData_rosters(Team = "paiN Gaming", Role = "Support")
 
-rosters1 %>% 
+rosters %>% 
   slice(1:10)
 
 ```
 
+5) `getData_games()`: Creates a tibble containing [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends) data on CBLOL official games.
 
+
+```{r games1}
+# You can specify the Year and Split...
+games1 <- getData_games(Year = 2020, Split = c("Split_1","Split_1_Playoffs"))
+glimpse(games1)
+
+```
+
+
+```{r games2}
+# ...and also the Org.
+games2 <- getData_games(Team = "INTZ", Year = 2020, Split = c("Split_2"))
+glimpse(games2)
+```
+
+
+
+
+[...]
 
 ### Notes
 
