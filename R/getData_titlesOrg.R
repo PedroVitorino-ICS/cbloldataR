@@ -3,8 +3,7 @@
 #' Creates a tibble containing Leaguepedia data on CBLOL wins per Organization
 #'
 #'
-#'
-#' @param Team character. Its very case sensitive and the name(s) have to be passed exactly as it is written in https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends
+#' @param Team (character) Its very case sensitive and the name(s) have to be passed exactly as it is written in https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends
 #'
 #' @return A tibble containing: team, x1st_place, x2nd_place, x3rd_4th_place, league
 #' @export
