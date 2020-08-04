@@ -6,7 +6,7 @@
 \usage{
 getData_editions(
   Split = c("Split 1", "Split 2", "Split 1 Playoffs", "Split 2 Playoffs"),
-  Year = c(2014:2020)
+  Year = c(2015:2020)
 )
 }
 \arguments{
