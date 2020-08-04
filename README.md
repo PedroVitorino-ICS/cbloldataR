@@ -46,16 +46,15 @@ harvest from
 
 ``` r
 editions <- getData_editions()
-head(editions)
-#> # A tibble: 6 x 6
-#>    year tournament       prize_pool first            runner_up        league
-#>   <dbl> <chr>                 <dbl> <chr>            <chr>            <chr> 
-#> 1  2020 Split 2 Playoffs     160000 <NA>             <NA>             CBLOL 
-#> 2  2020 Split 2               40000 <NA>             <NA>             CBLOL 
-#> 3  2020 Split 1 Playoffs     160000 KaBuM! e-Sports  Flamengo eSports CBLOL 
-#> 4  2020 Split 1               40000 Vivo Keyd        Flamengo eSports CBLOL 
-#> 5  2019 Split 2 Playoffs     160000 Flamengo eSports INTZ             CBLOL 
-#> 6  2019 Split 2               40000 Flamengo eSports KaBuM! e-Sports  CBLOL
+glimpse(editions)
+#> Rows: 24
+#> Columns: 6
+#> $ year       <dbl> 2020, 2020, 2020, 2020, 2019, 2019, 2019, 2019, 2018, 20...
+#> $ tournament <chr> "Split 2 Playoffs", "Split 2", "Split 1 Playoffs", "Spli...
+#> $ prize_pool <dbl> 160000, 40000, 160000, 40000, 160000, 40000, 160000, 400...
+#> $ first      <chr> NA, NA, "KaBuM! e-Sports", "Vivo Keyd", "Flamengo eSport...
+#> $ runner_up  <chr> NA, NA, "Flamengo eSports", "Flamengo eSports", "INTZ", ...
+#> $ league     <chr> "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL", "C...
 ```
 
 ### Notes

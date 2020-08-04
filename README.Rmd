@@ -51,7 +51,7 @@ The package offer access to eight tables of tidy data that you can harvest from 
 
 ```{r}
 editions <- getData_editions()
-head(editions)
+glimpse(editions)
 ```
 
 
