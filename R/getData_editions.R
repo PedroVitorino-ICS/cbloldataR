@@ -11,7 +11,7 @@
 #' @examples
 #' a <- getData_editions()
 #' b <- getData_editions(ano = c(2020,2018))
-getData_editions <- function(Split = c("Split 1", "Split 2", "Split 1 Playoffs", "Split 2 Playoffs"), Year = c(2014:2020)){
+getData_editions <- function(Split = c("Split 1", "Split 2", "Split 1 Playoffs", "Split 2 Playoffs"), Year = c(2015:2020)){
   old <- options(warn = 0)
   options(warn = -1)
 
