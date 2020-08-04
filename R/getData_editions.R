@@ -2,7 +2,7 @@
 #'
 #' Creates a tibble containing Leaguepedia data on each CBLOL edition.
 #'
-#'
+#' @param Split (character) The split you want to access data: "Split 1", "Split 2", "Split 1 Playoffs" or "Split 2 Playoffs".
 #' @param Year numeric. The year of the edition you want to access data
 #'
 #' @return A tibble containing: year, tournament (split/playoff), prize pool (R$), winner, runner up and league.
@@ -11,7 +11,7 @@
 #' @examples
 #' a <- getData_editions()
 #' b <- getData_editions(ano = c(2020,2018))
-getData_editions <- function(Year = c(2014:2020)){
+getData_editions <- function(Split = c("Split 1", "Split 2", "Split 1 Playoffs", "Split 2 Playoffs"), Year = c(2014:2020)){
   old <- options(warn = 0)
   options(warn = -1)
 
@@ -50,10 +50,16 @@ getData_editions <- function(Year = c(2014:2020)){
 
 
     edicoes <- edicoes %>%
-      dplyr::filter(year %in% Year)
+      dplyr::filter(year %in% Year) %>%
+      dplyr::filter(tournament %in% Split)
+
+
 
 
 
   on.exit(options(old), add = TRUE)
   return(edicoes)
 }
+
+
+
