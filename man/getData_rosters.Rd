@@ -13,15 +13,15 @@ getData_rosters(
 )
 }
 \arguments{
-\item{Playerid}{character.  Its very case sensitive and the playerid(s) have to be passed exactly as it is written at Leaguepedia}
+\item{Playerid}{(character)  Its very case sensitive and the playerid(s) have to be passed exactly as it is written at Leaguepedia}
 
-\item{Team}{character. Its very case sensitive and the name(s) have to be passed exactly as it is written at Leaguepedia}
+\item{Team}{(character)  Its very case sensitive and the name(s) have to be passed exactly as it is written at Leaguepedia}
 
-\item{Split}{character. Use if you want to specify a Split: "Split_1" or "Split_2".}
+\item{Split}{(character)  Use if you want to specify a Split: "Split_1" or "Split_2".}
 
-\item{Year}{numeric. The year of the edition you want to access data}
+\item{Year}{(numeric) The year of the edition you want to access data}
 
-\item{Role}{character. Use if you want to specify one or more roles: "Top Laner", "Jungler", "Mid Laner", "Bot Laner", "Support" or "Coach".}
+\item{Role}{(character)  Use if you want to specify one or more roles: "Top Laner", "Jungler", "Mid Laner", "Bot Laner", "Support" or "Coach".}
 }
 \value{
 A tibble containing: country, playerid (id), name, team, year, split, role and league. If there is no data for the entry you specified it will return a message saying "There is no data for this entry".
