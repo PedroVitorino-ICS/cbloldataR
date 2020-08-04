@@ -27,18 +27,40 @@ install the latest development version from
 devtools::install_github("pedrodrocha/cbloldataR")
 ```
 
-## Example
-
-This is a basic example which shows you how to solve a common problem:
+## Load
 
 ``` r
 library(cbloldataR)
-## basic example code
+```
+
+## Use
+
+The package offer access to eight tables of tidy data that you can
+harvest from
+[Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends).
+
+1)  `getData_editions()` creates a tibble containing Leaguepedia data on
+    each CBLOL edition.
+
+<!-- end list -->
+
+``` r
+editions <- getData_editions()
+head(editions)
+#> # A tibble: 6 x 6
+#>    year tournament       prize_pool first            runner_up        league
+#>   <dbl> <chr>                 <dbl> <chr>            <chr>            <chr> 
+#> 1  2020 Split 2 Playoffs     160000 <NA>             <NA>             CBLOL 
+#> 2  2020 Split 2               40000 <NA>             <NA>             CBLOL 
+#> 3  2020 Split 1 Playoffs     160000 KaBuM! e-Sports  Flamengo eSports CBLOL 
+#> 4  2020 Split 1               40000 Vivo Keyd        Flamengo eSports CBLOL 
+#> 5  2019 Split 2 Playoffs     160000 Flamengo eSports INTZ             CBLOL 
+#> 6  2019 Split 2               40000 Flamengo eSports KaBuM! e-Sports  CBLOL
 ```
 
 ### Notes
 
-If you use the data always remember to attribute the source for
+If you use the data always remember to attribute the source to
 [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends).
 
 If you encounter a clear bug, please file a minimal reproducible example
