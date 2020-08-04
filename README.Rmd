@@ -45,7 +45,7 @@ library(cbloldataR)
 
 ## Use
 
-The package offer access to eight tables of tidy data that you can harvest from [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends). 
+The package offer access to tables of tidy data that you can harvest from [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends). 
 
 1) `getData_editions()`: creates a tibble containing [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends) data on each CBLOL edition. 
 
@@ -96,6 +96,14 @@ games2 <- getData_games(Team = "INTZ", Year = 2020, Split = c("Split_2"))
 glimpse(games2)
 ```
 
+6) ` getData_champion()`: Creates a tibble containing [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends) data on champions played in CBLOL official games
+
+```{r champion}
+champion <- getData_champion(Role = "Mid",
+                              Year = 2020,
+                              Split = "Split_2")
+glimpse(champion)
+```
 
 
 
