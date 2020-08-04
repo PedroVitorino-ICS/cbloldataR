@@ -47,13 +47,19 @@ library(cbloldataR)
 
 The package offer access to eight tables of tidy data that you can harvest from [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends). 
 
-1) `getData_editions()` creates a tibble containing Leaguepedia data on each CBLOL edition. 
+1) `getData_editions()`: creates a tibble containing Leaguepedia data on each CBLOL edition. 
 
-```{r}
+```{r editions}
 editions <- getData_editions()
 glimpse(editions)
 ```
 
+2) `getData_titlesOrg()`: Creates a tibble containing Leaguepedia data on CBLOL tournament wins per Organization.
+
+```{r titlesOrg}
+titlesOrg <- getData_titlesOrg()
+glimpse(titlesOrg)
+```
 
 
 

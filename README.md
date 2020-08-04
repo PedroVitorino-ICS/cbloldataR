@@ -39,8 +39,8 @@ The package offer access to eight tables of tidy data that you can
 harvest from
 [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends).
 
-1)  `getData_editions()` creates a tibble containing Leaguepedia data on
-    each CBLOL edition.
+1)  `getData_editions()`: creates a tibble containing Leaguepedia data
+    on each CBLOL edition.
 
 <!-- end list -->
 
@@ -55,6 +55,23 @@ glimpse(editions)
 #> $ first      <chr> NA, NA, "KaBuM! e-Sports", "Vivo Keyd", "Flamengo eSport...
 #> $ runner_up  <chr> NA, NA, "Flamengo eSports", "Flamengo eSports", "INTZ", ...
 #> $ league     <chr> "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL", "C...
+```
+
+2)  `getData_titlesOrg()`: Creates a tibble containing Leaguepedia data
+    on CBLOL tournament wins per Organization.
+
+<!-- end list -->
+
+``` r
+titlesOrg <- getData_titlesOrg()
+glimpse(titlesOrg)
+#> Rows: 19
+#> Columns: 5
+#> $ team           <chr> "INTZ", "KaBuM! e-Sports", "paiN Gaming", "Vivo Keyd...
+#> $ x1st_place     <chr> "4", "4", "2", "1", "1", "1", "1", "1", "0", "0", "0...
+#> $ x2nd_place     <chr> "2", "0", "2", "4", "3", "0", "0", "0", "3", "1", "0...
+#> $ x3rd_4th_place <chr> "2", "3", "5", "4", "0", "2", "0", "0", "4", "0", "1...
+#> $ league         <chr> "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL"...
 ```
 
 ### Notes
