@@ -233,6 +233,9 @@ glimpse(players)
 #> $ league <chr> "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL...
 ```
 
+> See notes for currently problems with AD Carry / Bot data in
+> Leaguepedia
+
 **8)** `getData_playersChampion()`: Creates a tibble containing
 [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends)
 data of players per Champion played in official games of CBLOL.
@@ -267,6 +270,9 @@ glimpse(players_champion)
 #> $ gs       <chr> "20.4%", "18.8%", "19.6%", "18.1%", "17%", "17.5%", "18.6%...
 #> $ league   <chr> "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBLOL", "CBL...
 ```
+
+> See notes for currently problems with AD Carry / Bot data in
+> Leaguepedia
 
 ### Notes
 

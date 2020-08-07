@@ -116,6 +116,8 @@ players <- getData_players(Role = "Jungle",
 glimpse(players)
 ```
 
+> See notes for currently problems with AD Carry / Bot data in Leaguepedia
+
 **8)** `getData_playersChampion()`: Creates a tibble containing [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends) data of players per Champion played in official games of CBLOL.
 
 ```{r players_champion}
@@ -126,6 +128,7 @@ glimpse(players_champion)
 
 ```
 
+> See notes for currently problems with AD Carry / Bot data in Leaguepedia
 
 ### Notes
 
