@@ -3,7 +3,7 @@
 #' Creates a tibble containing Leaguepedia data of players in CBLOL games
 #'
 #'
-#' @param Role (character) The lane of the player. It should contain at least one of the five roles: "Top", "Jungle", "Mid", "AD Carry" and "Support".
+#' @param Role (character) The lane of the player. It should contain at least one of the five roles: "Top", "Jungle", "Mid", "Bot" and "Support".
 #' @param Year (numeric) The year you want to access data.
 #' @param Split (character) The split you want to access data: "Split_1", "Split_2", "Split_1_Playoffs" or "Split_2_Playoffs".
 #' @param Playerid (character) Its very case sensitive and the playerid(s) have to be passed exactly as in Leaguepedia.
@@ -17,7 +17,7 @@
 #' b <- getData_players(Role = "Top",Year = 2020, Split = "Split_2")
 #' c <- getData_players(Playerid = "Robo",Year = c(2019,2020))
 #' d <- getData_players(Team = "INTZ",Year = 2020, Split = "Split_2")
-getData_players <- function(Role = c("Top","Jungle","Mid","AD Carry","Support"), Year = 2015:2020, Split = c("Split_1", "Split_1_Playoffs", "Split_2", "Split_2_Playoffs"), Playerid = NULL, Team = NULL){
+getData_players <- function(Role = c("Top","Jungle","Mid","Bot","Support"), Year = 2015:2020, Split = c("Split_1", "Split_1_Playoffs", "Split_2", "Split_2_Playoffs"), Playerid = NULL, Team = NULL){
 
   message("Be patient, it may take a while...")
 
@@ -108,7 +108,7 @@ getData_players <- function(Role = c("Top","Jungle","Mid","AD Carry","Support"),
         rvest::html_nodes("table") %>%
         rvest::html_table(fill = TRUE, header = FALSE) -> tab
 
-      roles <- c("Top","Jungle","Mid","AD Carry","Support")
+      roles <- c("Top","Jungle","Mid","Bot","Support")
 
       role <- purrr::flatten_chr(stringr::str_extract_all(tab[[1]]$X1[1],roles))
 

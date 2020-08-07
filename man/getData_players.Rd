@@ -5,7 +5,7 @@
 \title{Harvest from Leaguepedia data of players in games of CBLOL}
 \usage{
 getData_players(
-  Role = c("Top", "Jungle", "Mid", "AD Carry", "Support"),
+  Role = c("Top", "Jungle", "Mid", "Bot", "Support"),
   Year = 2015:2020,
   Split = c("Split_1", "Split_1_Playoffs", "Split_2", "Split_2_Playoffs"),
   Playerid = NULL,
@@ -13,7 +13,7 @@ getData_players(
 )
 }
 \arguments{
-\item{Role}{(character) The lane of the player. It should contain at least one of the five roles: "Top", "Jungle", "Mid", "AD Carry" and "Support".}
+\item{Role}{(character) The lane of the player. It should contain at least one of the five roles: "Top", "Jungle", "Mid", "Bot" and "Support".}
 
 \item{Year}{(numeric) The year you want to access data.}
 
