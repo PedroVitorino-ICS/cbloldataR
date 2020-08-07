@@ -277,7 +277,8 @@ If you encounter a clear bug, please file a minimal reproducible example
 on [GitHub](https://github.com/pedrodrocha/cbloldataR/issues).
 
 I noticed a recent problem with AD Carry data coming from Leaguepedia
-and harvested via `getData_players()`. The problem is in
+and harvested via `getData_players()` and `getData_playersChampion()`.
+The problem is in
 [Leaguepedia](https://lol.gamepedia.com/Special:RunQuery/TournamentStatistics?TS%5Bpreload%5D=TournamentByChampionRole&TS%5Brole%5D=Bot&TS%5Btournament%5D=CBLOL/2020%20Season/Split%201&pfRunQueryFormName=TournamentStatistics)
 and I will wait for their update before making any changes. Other roles
 are looking fine.
