@@ -5,7 +5,7 @@
 \title{Harvest from Leaguepedia data of players per Champion played in games of CBLOL}
 \usage{
 getData_playersChampion(
-  Role = c("Top", "Jungle", "Mid", "AD Carry", "Support"),
+  Role = c("Top", "Jungle", "Mid", "Bot", "Support"),
   Year = 2015:2020,
   Split = c("Split_1", "Split_1_Playoffs", "Split_2", "Split_2_Playoffs"),
   Playerid = NULL,
@@ -13,7 +13,7 @@ getData_playersChampion(
 )
 }
 \arguments{
-\item{Role}{(character) The lane of the player. It should contain at least one of the five roles: "Top", "Jungle", "Mid", "AD Carry" and "Support".}
+\item{Role}{(character) The lane of the player. It should contain at least one of the five roles: "Top", "Jungle", "Mid", "Bot" and "Support".}
 
 \item{Year}{(numeric) The year you want to access data.}
 
@@ -38,12 +38,12 @@ b <- getData_playersChampion(
   Champion = "Renekton"
   )
 c <- getData_playersChampion(
-Role = c("Mid","AD Carry"),
+Role = c("Mid","Bot"),
 Year = 2020,
 Champion = "Syndra"
 )
 d <- getData_playersChampion(
-Role = "AD Carry",
+Role = "Bot",
 Playerid = "BrTT",
 Year = 2020,
 Split = "Split_2"

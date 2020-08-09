@@ -35,6 +35,7 @@ devtools::install_github("pedrodrocha/cbloldataR")
 
 ```{r include=FALSE}
 library(tidyverse)
+library(magrittr)
 ```
 
 
@@ -75,8 +76,7 @@ glimpse(titlesPlayer)
 ```{r rosters}
 rosters <- getData_rosters(Team = "paiN Gaming", Role = "Support")
 
-rosters %>% 
-  slice(1:10)
+glimpse(rosters)
 
 ```
 
@@ -116,7 +116,6 @@ players <- getData_players(Role = "Jungle",
 glimpse(players)
 ```
 
-> See notes for currently problems with AD Carry / Bot data in Leaguepedia
 
 **8)** `getData_playersChampion()`: Creates a tibble containing [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends) data of players per Champion played in official games of CBLOL.
 
@@ -128,7 +127,6 @@ glimpse(players_champion)
 
 ```
 
-> See notes for currently problems with AD Carry / Bot data in Leaguepedia
 
 ### Notes
 
@@ -136,5 +134,7 @@ If you use the data always remember to attribute the source to [Leaguepedia](htt
 
 If you encounter a clear bug, please file a minimal reproducible example on [GitHub](https://github.com/pedrodrocha/cbloldataR/issues).
 
-I noticed a recent problem with AD Carry data coming from Leaguepedia and harvested via `getData_players()` and `getData_playersChampion()`. The problem is in [Leaguepedia](https://lol.gamepedia.com/Special:RunQuery/TournamentStatistics?TS%5Bpreload%5D=TournamentByChampionRole&TS%5Brole%5D=Bot&TS%5Btournament%5D=CBLOL/2020%20Season/Split%201&pfRunQueryFormName=TournamentStatistics) and I will wait for their update before making any changes. Other roles are looking fine. 
+### Version Control
+
+* Version: 0.0.0.9001 - 08.08.2020 - fixing issues with AD Carry entries in both `getData_players()` and `getData_playersChampion()`.
 

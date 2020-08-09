@@ -2,7 +2,7 @@
 #'
 #' Creates a tibble containing Leaguepedia data of players  per Champion played in games of CBLOL
 #'
-#' @param Role (character) The lane of the player. It should contain at least one of the five roles: "Top", "Jungle", "Mid", "AD Carry" and "Support".
+#' @param Role (character) The lane of the player. It should contain at least one of the five roles: "Top", "Jungle", "Mid", "Bot" and "Support".
 #' @param Year (numeric) The year you want to access data.
 #' @param Split (character) The split you want to access data: "Split_1", "Split_2", "Split_1_Playoffs" or "Split_2_Playoffs".
 #' @param Playerid (character) The player you want to access data. By default it returns data on every player. Its very case sensitive and the playerid(s) should be passed exactly as in Leaguepedia
@@ -20,18 +20,18 @@
 #'   Champion = "Renekton"
 #'   )
 #' c <- getData_playersChampion(
-#' Role = c("Mid","AD Carry"),
+#' Role = c("Mid","Bot"),
 #' Year = 2020,
 #' Champion = "Syndra"
 #' )
 #' d <- getData_playersChampion(
-#' Role = "AD Carry",
+#' Role = "Bot",
 #' Playerid = "BrTT",
 #' Year = 2020,
 #' Split = "Split_2"
 #' )
 
-getData_playersChampion <- function(Role = c("Top","Jungle","Mid","AD Carry","Support"), Year = 2015:2020, Split = c("Split_1", "Split_1_Playoffs", "Split_2", "Split_2_Playoffs"), Playerid = NULL, Champion = NULL){
+getData_playersChampion <- function(Role = c("Top","Jungle","Mid","Bot","Support"), Year = 2015:2020, Split = c("Split_1", "Split_1_Playoffs", "Split_2", "Split_2_Playoffs"), Playerid = NULL, Champion = NULL){
 
   url = "https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends"
 
