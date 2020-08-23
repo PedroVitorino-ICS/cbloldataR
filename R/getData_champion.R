@@ -59,11 +59,9 @@ getData_champion <- function(Role = c("Top","Jungle","Mid","AD Carry","Support")
 
   links_campeoes <- paste0(links_edicoes,"/Champion_Statistics")
 
-  # >>>>>>>>>>>>> tirando playoffs 2/2020 PORQUE AINDA N?O ACONTECEU <<<<<<<<<<<<<<<<<<<<<<<< #
-  links_campeoes_sem_playoffs_2_2020 <- links_campeoes[-4]
 
 
-  links_campeoes_sem_playoffs_2_2020 %>%
+  links_campeoes %>%
     tibble::as_tibble() %>%
     dplyr::mutate(
       ano = as.integer(stringr::str_extract(value, "[0-9]{4}")),
@@ -73,7 +71,7 @@ getData_champion <- function(Role = c("Top","Jungle","Mid","AD Carry","Support")
     dplyr::filter(ano %in% Year) %>%
     dplyr::filter(split %in% Split) %>%
     dplyr::select(-ano, -split) %>%
-    purrr::flatten_chr() -> links_campeoes_sem_playoffs_2_2020
+    purrr::flatten_chr() -> links_campeoes
 
   ############ <<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>> ######################
 
@@ -144,7 +142,7 @@ getData_champion <- function(Role = c("Top","Jungle","Mid","AD Carry","Support")
   }
 
 
-  campeoes <- purrr::map_dfr(links_campeoes_sem_playoffs_2_2020,get_campeoes)
+  campeoes <- purrr::map_dfr(links_campeoes,get_campeoes)
 
 
   if(!is.null(Champion)){

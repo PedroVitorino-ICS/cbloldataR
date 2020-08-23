@@ -48,11 +48,9 @@ getData_games <- function(Team = NULL, Year = 2015:2020, Split = c("Split_1", "S
     purrr::flatten_chr() -> links_edicoes
   links_historico <- paste0(links_edicoes, "/Match_History")
 
-  # >>>>>>>>>>>>> tirando playoffs 2/2020 PORQUE AINDA NÃO ACONTECEU <<<<<<<<<<
 
-  links_historico_sem_playoffs_2_2020 <- links_historico[-4]
 
-  links_historico_sem_playoffs_2_2020 %>%
+  links_historico %>%
     tibble::as_tibble() %>%
     dplyr::mutate(
       ano = as.integer(stringr::str_extract(value, "[0-9]{4}")),
@@ -62,7 +60,7 @@ getData_games <- function(Team = NULL, Year = 2015:2020, Split = c("Split_1", "S
     dplyr::filter(ano %in% Year) %>%
     dplyr::filter(split %in% Split) %>%
     dplyr::select(-ano, -split) %>%
-    purrr::flatten_chr() -> links_historico_sem_playoffs_2_2020
+    purrr::flatten_chr() -> links_historico
 
   ############ <<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>> ######################
 
@@ -157,7 +155,7 @@ getData_games <- function(Team = NULL, Year = 2015:2020, Split = c("Split_1", "S
     return(historico)
   }
 
-  historico <- purrr::map_dfr(links_historico_sem_playoffs_2_2020, get_historico)
+  historico <- purrr::map_dfr(links_historico, get_historico)
 
 
   historico %>%

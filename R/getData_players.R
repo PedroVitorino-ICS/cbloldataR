@@ -55,10 +55,8 @@ getData_players <- function(Role = c("Top","Jungle","Mid","Bot","Support"), Year
 
   links_jogadores <- paste0(links_edicoes,"/Player_Statistics")
 
-  # >>>>>>>>>>>>> tirando playoffs 2/2020 PORQUE AINDA NÃO ACONTECEU <<<<<<<<<<<<<<<<<<<<<<<< #
-  links_jogadores_sem_playoffs_2_2020 <- links_jogadores[-4]
 
-  links_jogadores_sem_playoffs_2_2020 %>%
+  links_jogadores %>%
     tibble::as_tibble() %>%
     dplyr::mutate(
       ano = as.integer(stringr::str_extract(value, "[0-9]{4}")),
@@ -68,7 +66,7 @@ getData_players <- function(Role = c("Top","Jungle","Mid","Bot","Support"), Year
     dplyr::filter(ano %in% Year) %>%
     dplyr::filter(split %in% Split) %>%
     dplyr::select(-ano, -split) %>%
-    purrr::flatten_chr() -> links_jogadores_sem_playoffs_2_2020
+    purrr::flatten_chr() -> links_jogadores
 
   ############ <<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>> ######################
 
@@ -158,7 +156,7 @@ getData_players <- function(Role = c("Top","Jungle","Mid","Bot","Support"), Year
   }
 
 
-  estatistica_jogadores_geral <- purrr::map_dfr(links_jogadores_sem_playoffs_2_2020,get_estatistica_jogadores)
+  estatistica_jogadores_geral <- purrr::map_dfr(links_jogadores,get_estatistica_jogadores)
 
 
   if (!is.null(Playerid)) {
