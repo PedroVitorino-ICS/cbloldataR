@@ -3,8 +3,8 @@
 #' Creates a tibble containing Leaguepedia data on champions played in CBLOL games
 #'
 #' @param Role (character) The lane where the champion was played. It should contain at least one of the five roles: "Top", "Jungle", "Mid", "AD Carry" and "Support".
-#' @param Year (numeric) The year you want to access data.
-#' @param Split (character) The split you want to access data: "Split_1", "Split_2", "Split_1_Playoffs" or "Split_2_Playoffs".
+#' @param Year (numeric) The year you want to access data (2015:2020).
+#' @param Split (character) The split you want to access data: "Split 1", "Split 2", "Split 1 Playoffs" or "Split 2 Playoffs".
 #' @param Champion (character) The champion you want to access data. By default it returns data on every champion. Its very case sensitive.
 #'
 #' @return A tibble containing: champion, number of games it was played, victories, defeats, win rate, kills, deaths, assists, KDA, CS per game, CS per minute, gold per game, gold per minute, kill participation, percentage of kills/team, percentage of gold/team, lane, year, split and league.
@@ -15,20 +15,24 @@
 #' b <- getData_champion(
 #'     Role = "Top",
 #'     Year = 2020,
-#'     Split = c("Split_1","Split_1_Playoffs")
+#'     Split = c("Split 1","Split 1 Playoffs")
 #' )
 #' c <- getData_champion(
 #' Role = "AD Carry",
 #' Year = 2019,
-#' Champion = "Ashe"
+#' Champion = "Ashe",
+#' Split = "Split 2"
 #' )
-getData_champion <- function(Role = c("Top","Jungle","Mid","AD Carry","Support"), Year = 2015:2020, Split = c("Split_1", "Split_1_Playoffs", "Split_2", "Split_2_Playoffs"), Champion = NULL){
+getData_champion <- function(Role, Year, Split, Champion = NULL){
   message("It may take a while...")
+
+  old <- options(warn = 0)
+  options(warn = -1)
 
   url = "https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends"
 
-  old <- options(warn = 0)
-  options(warn=-1)
+
+  Split <- stringr::str_replace_all(Split," ","_")
 
   xml2::read_html(url) %>%
     rvest::html_nodes("td") %>%
@@ -145,16 +149,6 @@ getData_champion <- function(Role = c("Top","Jungle","Mid","AD Carry","Support")
   campeoes <- purrr::map_dfr(links_campeoes,get_campeoes)
 
 
-  if(!is.null(Champion)){
-    campeoes <- campeoes %>%
-      tibble::as_tibble() %>%
-      dplyr::filter(champion %in% Champion) %>%
-      dplyr::mutate(league = "CBLOL")
-  } else{
-    campeoes <- campeoes %>%
-      tibble::as_tibble() %>%
-      dplyr::mutate(league = "CBLOL")
-  }
 
   campeoes <- campeoes %>%
     dplyr::mutate(g = as.numeric(g),
@@ -171,7 +165,20 @@ getData_champion <- function(Role = c("Top","Jungle","Mid","AD Carry","Support")
                   g_m = as.numeric(g_m),
                   year = as.numeric(year))
 
+  if(!is.null(Champion)){
+    campeoes <- campeoes %>%
+      tibble::as_tibble() %>%
+      dplyr::filter(champion %in% Champion) %>%
+      dplyr::mutate(league = "CBLOL")
+  } else{
+    campeoes <- campeoes %>%
+      tibble::as_tibble() %>%
+      dplyr::mutate(league = "CBLOL")
+  }
+
   on.exit(options(old), add = TRUE)
+
+
     if (nrow(campeoes) == 0) {
     message("There is no data for this entry")
   } else {

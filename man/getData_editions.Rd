@@ -4,15 +4,12 @@
 \alias{getData_editions}
 \title{Harvest CBLOL editions data from Leaguepedia}
 \usage{
-getData_editions(
-  Split = c("Split 1", "Split 2", "Split 1 Playoffs", "Split 2 Playoffs"),
-  Year = c(2015:2020)
-)
+getData_editions(Split, Year)
 }
 \arguments{
 \item{Split}{(character) The split you want to access data: "Split 1", "Split 2", "Split 1 Playoffs" or "Split 2 Playoffs".}
 
-\item{Year}{(numeric) The year you want to access data}
+\item{Year}{(numeric) The year you want to access data (2015:2020).}
 }
 \value{
 A tibble containing: year, tournament (split/playoff), prize pool (R$), winner, runner up and league.
@@ -22,5 +19,5 @@ Creates a tibble containing Leaguepedia data on each CBLOL edition.
 }
 \examples{
 a <- getData_editions()
-b <- getData_editions(ano = c(2020,2018))
+b <- getData_editions(Year = c(2020,2018))
 }

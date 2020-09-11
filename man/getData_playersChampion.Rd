@@ -4,20 +4,14 @@
 \alias{getData_playersChampion}
 \title{Harvest from Leaguepedia data of players per Champion played in games of CBLOL}
 \usage{
-getData_playersChampion(
-  Role = c("Top", "Jungle", "Mid", "Bot", "Support"),
-  Year = 2015:2020,
-  Split = c("Split_1", "Split_1_Playoffs", "Split_2", "Split_2_Playoffs"),
-  Playerid = NULL,
-  Champion = NULL
-)
+getData_playersChampion(Role, Year, Split, Playerid = NULL, Champion = NULL)
 }
 \arguments{
 \item{Role}{(character) The lane of the player. It should contain at least one of the five roles: "Top", "Jungle", "Mid", "Bot" and "Support".}
 
-\item{Year}{(numeric) The year you want to access data.}
+\item{Year}{(numeric) The year you want to access data(2015:2020).}
 
-\item{Split}{(character) The split you want to access data: "Split_1", "Split_2", "Split_1_Playoffs" or "Split_2_Playoffs".}
+\item{Split}{(character) The split you want to access data: "Split 1", "Split 2", "Split 1 Playoffs" or "Split 2 Playoffs".}
 
 \item{Playerid}{(character) The player you want to access data. By default it returns data on every player. Its very case sensitive and the playerid(s) should be passed exactly as in Leaguepedia}
 
@@ -34,7 +28,7 @@ a <- getData_playersChampion()
 b <- getData_playersChampion(
   Role = "Top",
   Year = 2020,
-  Split = "Split_2",
+  Split = "Split 2",
   Champion = "Renekton"
   )
 c <- getData_playersChampion(
@@ -46,6 +40,6 @@ d <- getData_playersChampion(
 Role = "Bot",
 Playerid = "BrTT",
 Year = 2020,
-Split = "Split_2"
+Split = "Split 2"
 )
 }

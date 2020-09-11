@@ -4,19 +4,14 @@
 \alias{getData_champion}
 \title{Harvest data of champions in games of CBLOL from Leaguepedia}
 \usage{
-getData_champion(
-  Role = c("Top", "Jungle", "Mid", "AD Carry", "Support"),
-  Year = 2015:2020,
-  Split = c("Split_1", "Split_1_Playoffs", "Split_2", "Split_2_Playoffs"),
-  Champion = NULL
-)
+getData_champion(Role, Year, Split, Champion = NULL)
 }
 \arguments{
 \item{Role}{(character) The lane where the champion was played. It should contain at least one of the five roles: "Top", "Jungle", "Mid", "AD Carry" and "Support".}
 
-\item{Year}{(numeric) The year you want to access data.}
+\item{Year}{(numeric) The year you want to access data (2015:2020).}
 
-\item{Split}{(character) The split you want to access data: "Split_1", "Split_2", "Split_1_Playoffs" or "Split_2_Playoffs".}
+\item{Split}{(character) The split you want to access data: "Split 1", "Split 2", "Split 1 Playoffs" or "Split 2 Playoffs".}
 
 \item{Champion}{(character) The champion you want to access data. By default it returns data on every champion. Its very case sensitive.}
 }
@@ -31,11 +26,12 @@ a <- getData_champion()
 b <- getData_champion(
     Role = "Top",
     Year = 2020,
-    Split = c("Split_1","Split_1_Playoffs")
+    Split = c("Split 1","Split 1 Playoffs")
 )
 c <- getData_champion(
 Role = "AD Carry",
 Year = 2019,
-Champion = "Ashe"
+Champion = "Ashe",
+Split = "Split 2"
 )
 }

@@ -3,17 +3,16 @@
 #' Creates a tibble containing Leaguepedia data on each CBLOL edition.
 #'
 #' @param Split (character) The split you want to access data: "Split 1", "Split 2", "Split 1 Playoffs" or "Split 2 Playoffs".
-#' @param Year (numeric) The year you want to access data
+#' @param Year (numeric) The year you want to access data (2015:2020).
 #'
 #' @return A tibble containing: year, tournament (split/playoff), prize pool (R$), winner, runner up and league.
 #' @export
 #'
 #' @examples
 #' a <- getData_editions()
-#' b <- getData_editions(ano = c(2020,2018))
-getData_editions <- function(Split = c("Split 1", "Split 2", "Split 1 Playoffs", "Split 2 Playoffs"), Year = c(2015:2020)){
-  old <- options(warn = 0)
-  options(warn = -1)
+#' b <- getData_editions(Year = c(2020,2018))
+getData_editions <- function(Split, Year){
+
 
 
   url = "https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends"
@@ -57,7 +56,6 @@ getData_editions <- function(Split = c("Split 1", "Split 2", "Split 1 Playoffs",
 
 
 
-  on.exit(options(old), add = TRUE)
   return(edicoes)
 }
 

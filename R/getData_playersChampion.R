@@ -3,8 +3,8 @@
 #' Creates a tibble containing Leaguepedia data of players  per Champion played in games of CBLOL
 #'
 #' @param Role (character) The lane of the player. It should contain at least one of the five roles: "Top", "Jungle", "Mid", "Bot" and "Support".
-#' @param Year (numeric) The year you want to access data.
-#' @param Split (character) The split you want to access data: "Split_1", "Split_2", "Split_1_Playoffs" or "Split_2_Playoffs".
+#' @param Year (numeric) The year you want to access data(2015:2020).
+#' @param Split (character) The split you want to access data: "Split 1", "Split 2", "Split 1 Playoffs" or "Split 2 Playoffs".
 #' @param Playerid (character) The player you want to access data. By default it returns data on every player. Its very case sensitive and the playerid(s) should be passed exactly as in Leaguepedia
 #' @param Champion (character) The champion you want to access data. By default it returns data on every champion. Its very case sensitive and the champion(s) name(s) should be passed exactly as in Leaguepedia
 #'
@@ -16,7 +16,7 @@
 #' b <- getData_playersChampion(
 #'   Role = "Top",
 #'   Year = 2020,
-#'   Split = "Split_2",
+#'   Split = "Split 2",
 #'   Champion = "Renekton"
 #'   )
 #' c <- getData_playersChampion(
@@ -28,10 +28,10 @@
 #' Role = "Bot",
 #' Playerid = "BrTT",
 #' Year = 2020,
-#' Split = "Split_2"
+#' Split = "Split 2"
 #' )
 
-getData_playersChampion <- function(Role = c("Top","Jungle","Mid","Bot","Support"), Year = 2015:2020, Split = c("Split_1", "Split_1_Playoffs", "Split_2", "Split_2_Playoffs"), Playerid = NULL, Champion = NULL){
+getData_playersChampion <- function(Role, Year, Split, Playerid = NULL, Champion = NULL){
 
   url = "https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends"
 
@@ -40,6 +40,7 @@ getData_playersChampion <- function(Role = c("Top","Jungle","Mid","Bot","Support
   old <- options(warn = 0)
   options(warn=-1)
 
+  Split <- stringr::str_replace_all(Split," ","_")
 
   xml2::read_html(url) %>%
     rvest::html_nodes("td") %>%

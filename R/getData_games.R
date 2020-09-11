@@ -3,8 +3,8 @@
 #' Creates a tibble containing Leaguepedia data on CBLOL games.
 #'
 #' @param Team (character) Its very case sensitive and the name(s) have to be passed exactly as it is written in Leaguepedia
-#' @param Year (numeric) The year of the edition you want to access data.
-#' @param Split (character) Use if you want to specify a Split: "Split_1", "Split_2", "Split_1_Playoffs","Split_2_Playoffs"
+#' @param Year (numeric) The year of the edition you want to access data (2015:2020).
+#' @param Split (character) Use if you want to specify a Split: "Split 1", "Split 2", "Split 1 Playoffs","Split 2 Playoffs"
 #'
 #' @return A tibble containing: date, split, patch, blue team, red team, winner, bans blue, bans red, picks blue, picks red, blue roster, red roster and league.
 #' @export
@@ -12,14 +12,16 @@
 #' @examples
 #' a <- getData_games()
 #' b <- getData_games(Year = 2013)
-#' c <- getData_games(Team = "INTZ",Year = c(2019,2020), Split = "Split_1")
-getData_games <- function(Team = NULL, Year = 2015:2020, Split = c("Split_1", "Split_1_Playoffs", "Split_2", "Split_2_Playoffs")) {
+#' c <- getData_games(Team = "INTZ",Year = c(2019,2020), Split = "Split 1")
+getData_games <- function(Team = NULL, Year, Split) {
   message("It may take a while...")
 
   url <- "https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends"
 
   old <- options(warn = 0)
   options(warn = -1)
+
+  Split <- stringr::str_replace_all(Split," ","_")
 
   xml2::read_html(url) %>%
     rvest::html_nodes("td") %>%

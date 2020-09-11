@@ -4,8 +4,8 @@
 #'
 #' @param Playerid (character)  Its very case sensitive and the playerid(s) have to be passed exactly as it is written at Leaguepedia
 #' @param Team (character)  Its very case sensitive and the name(s) have to be passed exactly as it is written at Leaguepedia
-#' @param Split (character)  Use if you want to specify a Split: "Split_1" or "Split_2".
-#' @param Year (numeric) The year of the edition you want to access data
+#' @param Split (character)  Use if you want to specify a Split: "Split 1" or "Split 2".
+#' @param Year (numeric) The year of the edition you want to access data (2015:2020)
 #' @param Role (character)  Use if you want to specify one or more roles: "Top Laner", "Jungler", "Mid Laner", "Bot Laner", "Support" or "Coach".
 #'
 #' @return A tibble containing: country, playerid (id), name, team, year, split, role and league. If there is no data for the entry you specified it will return a message saying "There is no data for this entry".
@@ -13,11 +13,9 @@
 #' @export
 #'
 #' @examples
-#' a <- getData_rosters()
-#' b <- getData_rosters(Year = 2020,Split = "Split_1")
-#' c <- getData_rosters(Playerid = "brTT")
-#' d <- getData_rosters(Team = "INTZ",Role = "Coach")
-getData_rosters <- function(Playerid = NULL, Team = NULL, Split = c("Split_1", "Split_2"), Year = c(2015:2020), Role = c("Top Laner", "Jungler", "Mid Laner", "Bot Laner", "Support", "Coach")) {
+#' a <- getData_rosters(Split = "Split 1", Year = 2020, Role = "Support")
+#' b <- getData_rosters(Year = c(2015:2020),Team = "INTZ",Role = "Coach")
+getData_rosters <- function(Playerid = NULL, Team = NULL, Split, Year, Role) {
   message("It may take a while...")
 
   url <- "https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends"
@@ -25,6 +23,8 @@ getData_rosters <- function(Playerid = NULL, Team = NULL, Split = c("Split_1", "
   old <- options(warn = 0)
   options(warn = -1)
 
+
+  Split <- stringr::str_replace_all(Split," ","_")
 
 
 

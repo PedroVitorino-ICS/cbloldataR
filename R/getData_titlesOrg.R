@@ -18,7 +18,7 @@ getData_titlesOrg <- function(Team = NULL) {
   titles <- xml2::read_html(url) %>%
     rvest::html_nodes(".wikitable") %>%
     rvest::html_table() %>%
-    .[[3]] %>%
+    .[[4]] %>%
     dplyr::mutate(
       `1st Place` = stringr::str_extract(`1st Place`, "[0-9]{1}"),
       `2nd Place` = stringr::str_extract(`2nd Place`, "[0-9]{1}"),

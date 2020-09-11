@@ -4,22 +4,16 @@
 \alias{getData_rosters}
 \title{Harvest data of CBLOL rosters from Leaguepedia}
 \usage{
-getData_rosters(
-  Playerid = NULL,
-  Team = NULL,
-  Split = c("Split_1", "Split_2"),
-  Year = c(2015:2020),
-  Role = c("Top Laner", "Jungler", "Mid Laner", "Bot Laner", "Support", "Coach")
-)
+getData_rosters(Playerid = NULL, Team = NULL, Split, Year, Role)
 }
 \arguments{
 \item{Playerid}{(character)  Its very case sensitive and the playerid(s) have to be passed exactly as it is written at Leaguepedia}
 
 \item{Team}{(character)  Its very case sensitive and the name(s) have to be passed exactly as it is written at Leaguepedia}
 
-\item{Split}{(character)  Use if you want to specify a Split: "Split_1" or "Split_2".}
+\item{Split}{(character)  Use if you want to specify a Split: "Split 1" or "Split 2".}
 
-\item{Year}{(numeric) The year of the edition you want to access data}
+\item{Year}{(numeric) The year of the edition you want to access data (2015:2020)}
 
 \item{Role}{(character)  Use if you want to specify one or more roles: "Top Laner", "Jungler", "Mid Laner", "Bot Laner", "Support" or "Coach".}
 }
@@ -31,7 +25,7 @@ Creates a tibble containing Leaguepedia data on CBLOL rosters on each edition
 }
 \examples{
 a <- getData_rosters()
-b <- getData_rosters(Year = 2020,Split = "Split_1")
+b <- getData_rosters(Year = 2020,Split = "Split 1")
 c <- getData_rosters(Playerid = "brTT")
 d <- getData_rosters(Team = "INTZ",Role = "Coach")
 }

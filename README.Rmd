@@ -39,7 +39,7 @@ library(magrittr)
 ```
 
 
-```{r example}
+```{r example, eval = FALSE}
 library(cbloldataR)
 
 ```
@@ -51,7 +51,7 @@ The package offer access to tidy tables of data that you can harvest from [Leagu
 **1)** `getData_editions()`: creates a tibble containing [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends) data on each CBLOL edition. 
 
 ```{r editions}
-editions <- getData_editions()
+editions <- getData_editions(Split = c("Split 1", "Split 2", "Split 1 Playoffs","Split 2 Playoffs"), Year = c(2015:2020))
 glimpse(editions)
 ```
 
@@ -74,7 +74,10 @@ glimpse(titlesPlayer)
 **4)** `getData_rosters()`: Creates a tibble containing [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends) data on CBLOL rosters on each edition.
 
 ```{r rosters}
-rosters <- getData_rosters(Team = "paiN Gaming", Role = "Support")
+rosters <- getData_rosters(Year = c(2015:2020),
+                           Team = "INTZ",
+                           Role = "Support", 
+                           Split = c("Split 1","Split 2"))
 
 glimpse(rosters)
 
@@ -84,34 +87,28 @@ glimpse(rosters)
 
 
 ```{r games1}
-# You can specify the Year and Split...
-games1 <- getData_games(Year = 2020, Split = c("Split_1","Split_1_Playoffs"))
-glimpse(games1)
+
+games <- getData_games(Year = 2020, Split = c("Split 2","Split 2 Playoffs"))
+glimpse(games)
 
 ```
 
-
-```{r games2}
-# ...and also the Org.
-games2 <- getData_games(Team = "INTZ", Year = 2020, Split = c("Split_2"))
-glimpse(games2)
-```
 
 **6)** `getData_champion()`: Creates a tibble containing [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends) data on champions played in CBLOL official games.
 
 ```{r champion}
 champion <- getData_champion(Role = "Mid",
-                              Year = 2020,
-                              Split = "Split_2")
+                             Year = 2020, 
+                             Split = c("Split 2","Split 2 Playoffs"))
 glimpse(champion)
 ```
 
 
 **7)** `getData_players()`: Creates a tibble containing [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends) data of players in CBLOL official games.
 ```{r, players}
-players <- getData_players(Role = "Jungle",
-                           Year = 2020,
-                           Split = "Split_2")
+players <- getData_players(Role = "Jungle", 
+                           Year = 2020, 
+                           Split = c("Split 2","Split 2 Playoffs"))
 
 glimpse(players)
 ```
@@ -120,9 +117,11 @@ glimpse(players)
 **8)** `getData_playersChampion()`: Creates a tibble containing [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends) data of players per Champion played in official games of CBLOL.
 
 ```{r players_champion}
-players_champion <- getData_playersChampion(Role = "Jungle",
-                                            Split = "Split_2",
-                                            Year = 2020)
+players_champion <- getData_playersChampion(Role = "Jungle", 
+                                            Year = 2020, 
+                                            Split = c("Split 2",
+                                                      "Split 2 Playoffs"))
+
 glimpse(players_champion)
 
 ```
@@ -137,5 +136,5 @@ If you encounter a clear bug, please file a minimal reproducible example on [Git
 ### Version Control
 
 * Version: 0.0.0.9001 - 08.08.2020 - fixing issues with AD Carry entries in both `getData_players()` and `getData_playersChampion()`.
-* Version: 0.0.0.9002 - 23.08.2020 - adding 2020/2 PlayOffs
-
+* Version: 0.0.0.9002 - 23.08.2020 - adding 2020/2 PlayOffs.
+* Version: 0.0.0.9003 - 11.09.2020 - editing how arguments are written while calling the package functions.

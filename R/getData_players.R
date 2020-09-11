@@ -4,8 +4,8 @@
 #'
 #'
 #' @param Role (character) The lane of the player. It should contain at least one of the five roles: "Top", "Jungle", "Mid", "Bot" and "Support".
-#' @param Year (numeric) The year you want to access data.
-#' @param Split (character) The split you want to access data: "Split_1", "Split_2", "Split_1_Playoffs" or "Split_2_Playoffs".
+#' @param Year (numeric) The year you want to access data(2015:2020).
+#' @param Split (character) The split you want to access data: "Split 1", "Split 2", "Split 1 Playoffs" or "Split 2 Playoffs".
 #' @param Playerid (character) Its very case sensitive and the playerid(s) have to be passed exactly as in Leaguepedia.
 #' @param Team (character) Its very case sensitive and the name(s) have to be passed exactly as in Leaguepedia
 #'
@@ -14,12 +14,14 @@
 #'
 #' @examples
 #' a <- getData_players()
-#' b <- getData_players(Role = "Top",Year = 2020, Split = "Split_2")
+#' b <- getData_players(Role = "Top",Year = 2020, Split = "Split 2")
 #' c <- getData_players(Playerid = "Robo",Year = c(2019,2020))
-#' d <- getData_players(Team = "INTZ",Year = 2020, Split = "Split_2")
-getData_players <- function(Role = c("Top","Jungle","Mid","Bot","Support"), Year = 2015:2020, Split = c("Split_1", "Split_1_Playoffs", "Split_2", "Split_2_Playoffs"), Playerid = NULL, Team = NULL){
+#' d <- getData_players(Team = "INTZ",Year = 2020, Split = "Split 2")
+getData_players <- function(Role, Year, Split, Playerid = NULL, Team = NULL){
 
   message("Be patient, it may take a while...")
+
+  Split <- stringr::str_replace_all(Split," ","_")
 
   url = "https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends"
 

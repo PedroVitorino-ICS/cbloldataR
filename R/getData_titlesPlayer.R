@@ -17,7 +17,7 @@ getData_titlesPlayer <- function(Playerid = NULL) {
   player <- xml2::read_html(url) %>%
     rvest::html_nodes(".wikitable") %>%
     rvest::html_table() %>%
-    .[[4]] %>%
+    .[[5]] %>%
     dplyr::mutate(
       `Titles as Player` = stringr::str_extract(`Titles as Player`, "[0-9]{1}"),
       `Titles as Coach` = stringr::str_extract(`Titles as Coach`, "[0-9]{1}")
