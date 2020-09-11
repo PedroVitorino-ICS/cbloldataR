@@ -18,6 +18,5 @@ A tibble containing: year, tournament (split/playoff), prize pool (R$), winner, 
 Creates a tibble containing Leaguepedia data on each CBLOL edition.
 }
 \examples{
-a <- getData_editions()
-b <- getData_editions(Year = c(2020,2018))
+editions <- getData_editions(Split = c("Split 1", "Split 2", "Split 1 Playoffs","Split 2 Playoffs"), Year = c(2015:2020))
 }

@@ -12,24 +12,7 @@
 #' @export
 #'
 #' @examples
-#' a <- getData_playersChampion()
-#' b <- getData_playersChampion(
-#'   Role = "Top",
-#'   Year = 2020,
-#'   Split = "Split 2",
-#'   Champion = "Renekton"
-#'   )
-#' c <- getData_playersChampion(
-#' Role = c("Mid","Bot"),
-#' Year = 2020,
-#' Champion = "Syndra"
-#' )
-#' d <- getData_playersChampion(
-#' Role = "Bot",
-#' Playerid = "BrTT",
-#' Year = 2020,
-#' Split = "Split 2"
-#' )
+#' players_champion <- getData_playersChampion(Role = "Jungle", Year = 2020, Split = c("Split 2","Split 2 Playoffs"))
 
 getData_playersChampion <- function(Role, Year, Split, Playerid = NULL, Champion = NULL){
 

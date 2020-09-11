@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 # cbloldataR
 
 <!-- badges: start -->
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 <!-- badges: end -->
 
 The goal of `cbloldataR` is to provide a set of functions aimed for harvesting data of CBLOL from [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends), helping analysts, journalists, or enthusiasts to work with and visualize the tournament stats within R.  
@@ -39,7 +39,7 @@ library(magrittr)
 ```
 
 
-```{r example, eval = FALSE}
+```{r example}
 library(cbloldataR)
 
 ```

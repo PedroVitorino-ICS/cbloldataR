@@ -11,18 +11,7 @@
 #' @export
 #'
 #' @examples
-#' a <- getData_champion()
-#' b <- getData_champion(
-#'     Role = "Top",
-#'     Year = 2020,
-#'     Split = c("Split 1","Split 1 Playoffs")
-#' )
-#' c <- getData_champion(
-#' Role = "AD Carry",
-#' Year = 2019,
-#' Champion = "Ashe",
-#' Split = "Split 2"
-#' )
+#' champion <- getData_champion(Role = "Mid", Year = 2020, Split = c("Split 2","Split 2 Playoffs"))
 getData_champion <- function(Role, Year, Split, Champion = NULL){
   message("It may take a while...")
 

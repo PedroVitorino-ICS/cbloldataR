@@ -9,9 +9,7 @@
 #' @export
 #'
 #' @examples
-#' a <- getData_titlesOrg()
-#' b <- getData_titlesOrg(Team = "INTZ")
-#' c <- getData_titlesOrg(Team = c("INTZ","paiN Gaming"))
+#' titlesOrg <- getData_titlesOrg()
 getData_titlesOrg <- function(Team = NULL) {
   url <- "https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends"
 

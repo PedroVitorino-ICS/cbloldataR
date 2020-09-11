@@ -8,9 +8,7 @@
 #' @export
 #'
 #' @examples
-#' a <- getData_titlesPlayer()
-#' b <- getData_titlesPlayer(playerid = "brTT")
-#' c <- getData_titlesPlayer(playerid = c("Kami","brTT"))
+#' titlesPlayer <- getData_titlesPlayer()
 getData_titlesPlayer <- function(Playerid = NULL) {
   url <- "https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends"
 

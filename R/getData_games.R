@@ -10,9 +10,7 @@
 #' @export
 #'
 #' @examples
-#' a <- getData_games()
-#' b <- getData_games(Year = 2013)
-#' c <- getData_games(Team = "INTZ",Year = c(2019,2020), Split = "Split 1")
+#' games <- getData_games(Year = 2020, Split = c("Split 2","Split 2 Playoffs"))
 getData_games <- function(Team = NULL, Year, Split) {
   message("It may take a while...")
 

@@ -20,7 +20,5 @@ A tibble containing: date, split, patch, blue team, red team, winner, bans blue,
 Creates a tibble containing Leaguepedia data on CBLOL games.
 }
 \examples{
-a <- getData_games()
-b <- getData_games(Year = 2013)
-c <- getData_games(Team = "INTZ",Year = c(2019,2020), Split = "Split 1")
+games <- getData_games(Year = 2020, Split = c("Split 2","Split 2 Playoffs"))
 }

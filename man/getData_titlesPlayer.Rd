@@ -16,7 +16,5 @@ A tibble containing: player, titles, titles_as_player, titles_as_coach and leagu
 Creates a tibble containing Leaguepedia data on CBLOL wins per player
 }
 \examples{
-a <- getData_titlesPlayer()
-b <- getData_titlesPlayer(playerid = "brTT")
-c <- getData_titlesPlayer(playerid = c("Kami","brTT"))
+titlesPlayer <- getData_titlesPlayer()
 }

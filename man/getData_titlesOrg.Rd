@@ -16,7 +16,5 @@ A tibble containing: team, x1st_place, x2nd_place, x3rd_4th_place, league
 Creates a tibble containing Leaguepedia data on CBLOL wins per Organization
 }
 \examples{
-a <- getData_titlesOrg()
-b <- getData_titlesOrg(Team = "INTZ")
-c <- getData_titlesOrg(Team = c("INTZ","paiN Gaming"))
+titlesOrg <- getData_titlesOrg()
 }

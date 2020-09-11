@@ -13,10 +13,7 @@
 #' @export
 #'
 #' @examples
-#' a <- getData_players()
-#' b <- getData_players(Role = "Top",Year = 2020, Split = "Split 2")
-#' c <- getData_players(Playerid = "Robo",Year = c(2019,2020))
-#' d <- getData_players(Team = "INTZ",Year = 2020, Split = "Split 2")
+#' players <- getData_players(Role = "Jungle", Year = 2020, Split = c("Split 2","Split 2 Playoffs"))
 getData_players <- function(Role, Year, Split, Playerid = NULL, Team = NULL){
 
   message("Be patient, it may take a while...")

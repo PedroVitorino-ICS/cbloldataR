@@ -24,8 +24,5 @@ A tibble containing: country, playerid (id), name, team, year, split, role and l
 Creates a tibble containing Leaguepedia data on CBLOL rosters on each edition
 }
 \examples{
-a <- getData_rosters()
-b <- getData_rosters(Year = 2020,Split = "Split 1")
-c <- getData_rosters(Playerid = "brTT")
-d <- getData_rosters(Team = "INTZ",Role = "Coach")
+rosters <- getData_rosters(Year = c(2015:2020),Team = "INTZ",Role = "Support", Split = c("Split 1","Split 2"))
 }

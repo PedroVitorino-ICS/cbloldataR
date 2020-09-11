@@ -13,8 +13,7 @@
 #' @export
 #'
 #' @examples
-#' a <- getData_rosters(Split = "Split 1", Year = 2020, Role = "Support")
-#' b <- getData_rosters(Year = c(2015:2020),Team = "INTZ",Role = "Coach")
+#' rosters <- getData_rosters(Year = c(2015:2020),Team = "INTZ",Role = "Support", Split = c("Split 1","Split 2"))
 getData_rosters <- function(Playerid = NULL, Team = NULL, Split, Year, Role) {
   message("It may take a while...")
 
