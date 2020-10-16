@@ -11,6 +11,17 @@
 #' @examples
 #' titlesOrg <- getData_titlesOrg()
 getData_titlesOrg <- function(Team = NULL) {
+
+  if(!is.null(Team)){
+    if(typeof(Team) != "character"){
+      type <- typeof(Team)
+
+      rlang::abort(message = paste0("Team should be character, not ", type),
+                   class = "class error")
+    }
+  }
+
+
   url <- "https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends"
 
   titles <- xml2::read_html(url) %>%
@@ -26,14 +37,28 @@ getData_titlesOrg <- function(Team = NULL) {
     janitor::clean_names() %>%
     tibble::as_tibble()
 
+
+  titles$league <- "CBLOL"
+
   if (!is.null(Team)) {
     titles <- titles %>%
       dplyr::filter(team %in% Team)
+
+    if(nrow(titles) == 0){
+      rlang::abort(message = paste0("There is no team called ", Team),
+                   class = "Team not found")
+    } else {
+      return(titles)
+    }
   } else {
     titles <- titles
   }
 
-  titles$league <- "CBLOL"
+
+
+
+
+
   return(titles)
 }
 

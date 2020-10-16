@@ -10,6 +10,16 @@
 #' @examples
 #' titlesPlayer <- getData_titlesPlayer()
 getData_titlesPlayer <- function(Playerid = NULL) {
+
+  if(!is.null(Playerid)){
+    if(typeof(Playerid) != "character"){
+        type <- typeof(Playerid)
+
+        rlang::abort(message = paste0("Playerid should be character, not ", type),
+                     class = "class error")
+    }
+  }
+
   url <- "https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends"
 
   player <- xml2::read_html(url) %>%
@@ -30,10 +40,18 @@ getData_titlesPlayer <- function(Playerid = NULL) {
   if (!is.null(Playerid)) {
     player <- player %>%
       dplyr::filter(player %in% Playerid)
+
+    if(nrow(player) == 0){
+      rlang::abort(message = paste0("There is no player called ", Playerid),
+                          class = "Player not found")
+    } else {
+      return(player)
+    }
+
   } else {
-    player <- player
+    return(player)
   }
 
-  return(player)
+
 }
 

@@ -12,12 +12,33 @@
 #' @examples
 #' games <- getData_games(Year = 2020, Split = c("Split 2","Split 2 Playoffs"))
 getData_games <- function(Team = NULL, Year, Split) {
+
+
+  if(!is.null(Team)){
+    if(typeof(Team) != "character"){
+      type <- typeof(Team)
+
+      rlang::abort(message = paste0("Team should be character, not ", type),
+                   class = "class error")
+    }
+  }
+
+  if(typeof(Split) != "character"){
+    type <- typeof(Split)
+
+    rlang::abort(message = paste0("Split should be character, not ", type),
+                 class = "class error")
+  }
+
+  if(Year == 2021){
+    rlang::abort(message = "The season hasn't started yet")
+  }
+
   message("It may take a while...")
 
   url <- "https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends"
 
-  old <- options(warn = 0)
-  options(warn = -1)
+
 
   Split <- stringr::str_replace_all(Split," ","_")
 
@@ -62,7 +83,7 @@ getData_games <- function(Team = NULL, Year, Split) {
     dplyr::select(-ano, -split) %>%
     purrr::flatten_chr() -> links_historico
 
-  ############ <<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>> ######################
+
 
   get_historico <- function(url) {
 
@@ -166,19 +187,17 @@ getData_games <- function(Team = NULL, Year, Split) {
       tibble::as_tibble() %>%
       dplyr::filter(blue %in% Team | red %in% Team) %>%
       dplyr::mutate(league = "CBLOL")
+
+    if (nrow(historico) == 0) {
+      rlang::abort(message = "There is no data for this entry")
+    }
+
   } else {
     historico <- historico %>%
       tibble::as_tibble() %>%
       dplyr::mutate(league = "CBLOL")
-  }
-
-
-
-  on.exit(options(old), add = TRUE)
-
-  if (nrow(historico) == 0) {
-    message("There is no data for this entry")
-  } else {
     return(historico)
   }
+
+
 }

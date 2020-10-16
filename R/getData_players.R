@@ -16,14 +16,58 @@
 #' players <- getData_players(Role = "Jungle", Year = 2020, Split = c("Split 2","Split 2 Playoffs"))
 getData_players <- function(Role, Year, Split, Playerid = NULL, Team = NULL){
 
+
+  if(!is.null(Playerid)){
+    if(typeof(Playerid) != "character"){
+      type <- typeof(Playerid)
+
+      rlang::abort(message = paste0("Playerid should be character, not ", type),
+                   class = "class error")
+    }
+  }
+
+  if(!is.null(Team)){
+    if(typeof(Team) != "character"){
+      type <- typeof(Team)
+
+      rlang::abort(message = paste0("Team should be character, not ", type),
+                   class = "class error")
+    }
+  }
+
+  if(typeof(Split) != "character"){
+    type <- typeof(Split)
+
+    rlang::abort(message = paste0("Split should be character, not ", type),
+                 class = "class error")
+  }
+
+
+  if(typeof(Role) != "character"){
+    type <- typeof(Role)
+
+    rlang::abort(message = paste0("Role should be character, not ", type),
+                 class = "class error")
+  }
+
+  if(is.numeric(Year) == FALSE){
+    type <- typeof(Year)
+
+    rlang::abort(message = paste0("Year should be numeric, not ", type),
+                 class = "class error")
+  }
+
+
+
+
   message("Be patient, it may take a while...")
+
 
   Split <- stringr::str_replace_all(Split," ","_")
 
   url = "https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends"
 
-  old <- options(warn = 0)
-  options(warn=-1)
+
 
   xml2::read_html(url) %>%
     rvest::html_nodes("td") %>%
@@ -67,7 +111,7 @@ getData_players <- function(Role, Year, Split, Playerid = NULL, Team = NULL){
     dplyr::select(-ano, -split) %>%
     purrr::flatten_chr() -> links_jogadores
 
-  ############ <<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>> ######################
+
 
 
   get_estatistica_jogadores <- function(url, Roles = Role) {
@@ -191,7 +235,6 @@ getData_players <- function(Role, Year, Split, Playerid = NULL, Team = NULL){
 
 
 
-  on.exit(options(old), add = TRUE)
 
 
   estatistica_jogadores_geral <- estatistica_jogadores_geral %>%
@@ -212,7 +255,7 @@ getData_players <- function(Role, Year, Split, Playerid = NULL, Team = NULL){
 
 
   if (nrow(estatistica_jogadores_geral) == 0) {
-    message("There is no data for this entry")
+    rlang::abort(message = "There is no data for this entry")
   } else {
     return(estatistica_jogadores_geral)
   }

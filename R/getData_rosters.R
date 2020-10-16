@@ -15,16 +15,61 @@
 #' @examples
 #' rosters <- getData_rosters(Year = c(2015:2020),Team = "INTZ",Role = "Support", Split = c("Split 1","Split 2"))
 getData_rosters <- function(Playerid = NULL, Team = NULL, Split, Year, Role) {
-  message("It may take a while...")
+
+
+
+
+  if(!is.null(Playerid)){
+    if(typeof(Playerid) != "character"){
+      type <- typeof(Playerid)
+
+      rlang::abort(message = paste0("Playerid should be character, not ", type),
+                   class = "class error")
+    }
+  }
+
+  if(!is.null(Team)){
+    if(typeof(Team) != "character"){
+      type <- typeof(Team)
+
+      rlang::abort(message = paste0("Team should be character, not ", type),
+                   class = "class error")
+    }
+  }
+
+  if(typeof(Split) != "character"){
+    type <- typeof(Split)
+
+    rlang::abort(message = paste0("Split should be character, not ", type),
+                 class = "class error")
+  }
+
+
+  if(typeof(Role) != "character"){
+    type <- typeof(Role)
+
+    rlang::abort(message = paste0("Role should be character, not ", type),
+                 class = "class error")
+  }
+
+  if(is.numeric(Year) == FALSE){
+    type <- typeof(Year)
+
+    rlang::abort(message = paste0("Year should be numeric, not ", type),
+                 class = "class error")
+  }
+
+  if(Year == 2021){
+    rlang::abort(message = "The season hasn't started yet")
+  }
+
+
+
 
   url <- "https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends"
 
-  old <- options(warn = 0)
-  options(warn = -1)
-
 
   Split <- stringr::str_replace_all(Split," ","_")
-
 
 
   xml2::read_html(url) %>%
@@ -64,10 +109,18 @@ getData_rosters <- function(Playerid = NULL, Team = NULL, Split, Year, Role) {
     as.list() %>%
     purrr::flatten_chr() -> links_elencos
 
-
+  links_elencos %>%
+    tibble::as_tibble() %>%
+    dplyr::mutate(newvars = stringr::str_extract(value, "[0-9]{4}(.*)")) %>%
+    tidyr::separate(col = newvars, into = c("year","split"), sep="/") %>%
+    dplyr::mutate(year = as.integer(stringr::str_remove(year, "_Season"))) %>%
+    dplyr::filter(year %in% Year & split %in% Split) %>%
+    dplyr::select(value) %>%
+    purrr::flatten_chr() -> links_elencos
 
 
   equipes_cblol <- function(url) {
+
     xml2::read_html(url) %>%
       rvest::html_nodes("h3") %>%
       rvest::html_nodes("span") %>%
@@ -144,40 +197,31 @@ getData_rosters <- function(Playerid = NULL, Team = NULL, Split, Year, Role) {
 
   if (!is.null(Playerid)) {
     elencos <- elencos %>%
-      dplyr::filter(year %in% Year) %>%
       dplyr::filter(role %in% Role) %>%
       dplyr::filter(id %in% Playerid) %>%
-      dplyr::filter(split %in% Split) %>%
       tibble::as_tibble()
   } else if (!is.null(Team)) {
     elencos <- elencos %>%
-      dplyr::filter(year %in% Year) %>%
       dplyr::filter(role %in% Role) %>%
-      dplyr::filter(split %in% Split) %>%
       dplyr::filter(team %in% Team) %>%
       tibble::as_tibble()
   } else if (!is.null(Playerid) & !is.null(Team)) {
     elencos <- elencos %>%
-      dplyr::filter(year %in% Year) %>%
       dplyr::filter(role %in% Role) %>%
       dplyr::filter(team %in% Team) %>%
       dplyr::filter(id %in% Playerid) %>%
-      dplyr::filter(split %in% Split) %>%
       tibble::as_tibble()
   } else {
     elencos <- elencos %>%
-      dplyr::filter(year %in% Year) %>%
       dplyr::filter(role %in% Role) %>%
-      dplyr::filter(split %in% Split) %>%
       tibble::as_tibble()
   }
 
 
 
-  on.exit(options(old), add = TRUE)
 
   if (nrow(elencos) == 0) {
-    message("There is no data for this entry")
+    rlang::abort(message = "There is no data for this entry")
   } else {
     return(elencos)
   }

@@ -12,6 +12,23 @@
 #' editions <- getData_editions(Split = c("Split 1", "Split 2", "Split 1 Playoffs","Split 2 Playoffs"), Year = c(2015:2020))
 getData_editions <- function(Split, Year){
 
+  if(typeof(Split) != "character"){
+    type <- typeof(Split)
+
+    rlang::abort(message = paste0("Split should be character, not ", type),
+                 class = "class error")
+  }
+
+  if(is.numeric(Year) == FALSE){
+    type <- typeof(Year)
+
+    rlang::abort(message = paste0("Year should be numeric, not ", type),
+                 class = "class error")
+  }
+
+  if(2021 %in% Year){
+    rlang::abort(message = "The 2021 season hasn't started yet")
+  }
 
 
   url = "https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends"
