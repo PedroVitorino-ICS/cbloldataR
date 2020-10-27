@@ -51,14 +51,14 @@ The package offer access to tidy tables of data that you can harvest from [Leagu
 
 **1)** `getData_editions()`: creates a tibble containing [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends) data on each CBLOL edition. 
 
-```{r editions}
+```{r editions, message=FALSE, warning=FALSE}
 editions <- getData_editions(Split = c("Split 1", "Split 2", "Split 1 Playoffs","Split 2 Playoffs"), Year = c(2015:2020))
 glimpse(editions)
 ```
 
 **2)** `getData_titlesOrg()`: Creates a tibble containing [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends) data on CBLOL tournament wins per Organization.
 
-```{r titlesOrg}
+```{r titlesOrg, message=FALSE, warning=FALSE}
 titlesOrg <- getData_titlesOrg()
 glimpse(titlesOrg)
 ```
@@ -66,7 +66,7 @@ glimpse(titlesOrg)
 
 **3)** `getData_titlesPlayer()`: Creates a tibble containing [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends) data on CBLOL tournament wins per player.
 
-```{r titlesPlayer}
+```{r titlesPlayer, message=FALSE, warning=FALSE}
 titlesPlayer <- getData_titlesPlayer()
 glimpse(titlesPlayer)
 ```
@@ -74,7 +74,7 @@ glimpse(titlesPlayer)
 
 **4)** `getData_rosters()`: Creates a tibble containing [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends) data on CBLOL rosters on each edition.
 
-```{r rosters}
+```{r rosters, message=FALSE, warning=FALSE}
 
 rosters <- getData_rosters(Year = c(2015:2020),Team = "INTZ",Role = "Support", Split = c("Split 1","Split 2"))
 
@@ -85,7 +85,7 @@ glimpse(rosters)
 **5)** `getData_games()`: Creates a tibble containing [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends) data on CBLOL official games.
 
 
-```{r games1}
+```{r games1, message=FALSE, warning=FALSE}
 
 games <- getData_games(Year = 2020, Split = c("Split 2","Split 2 Playoffs"))
 glimpse(games)
@@ -95,7 +95,7 @@ glimpse(games)
 
 **6)** `getData_champion()`: Creates a tibble containing [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends) data on champions played in CBLOL official games.
 
-```{r champion}
+```{r champion, message=FALSE, warning=FALSE}
 champion <- getData_champion(Role = "Mid",
                              Year = 2020, 
                              Split = c("Split 2","Split 2 Playoffs"))
@@ -104,7 +104,7 @@ glimpse(champion)
 
 
 **7)** `getData_players()`: Creates a tibble containing [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends) data of players in CBLOL official games.
-```{r, players}
+```{r, players, message=FALSE, warning=FALSE}
 players <- getData_players(Role = "Jungle", 
                            Year = 2020, 
                            Split = c("Split 2","Split 2 Playoffs"))
@@ -115,7 +115,7 @@ glimpse(players)
 
 **8)** `getData_playersChampion()`: Creates a tibble containing [Leaguepedia](https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends) data of players per Champion played in official games of CBLOL.
 
-```{r players_champion}
+```{r players_champion, message=FALSE, warning=FALSE}
 players_champion <- getData_playersChampion(Role = "Jungle", 
                                             Year = 2020, 
                                             Split = c("Split 2",

@@ -95,14 +95,6 @@ data on CBLOL rosters on each edition.
 ``` r
 
 rosters <- getData_rosters(Year = c(2015:2020),Team = "INTZ",Role = "Support", Split = c("Split 1","Split 2"))
-#> Warning in if (Year == 2021) {: a condição tem comprimento > 1 e somente o
-#> primeiro elemento será usado
-#> Warning: Expected 2 pieces. Additional pieces discarded in 13 rows [1, 2, 3, 4,
-#> 5, 6, 7, 8, 9, 10, 11, 12, 13].
-#> Warning: The `x` argument of `as_tibble.matrix()` must have unique column names if `.name_repair` is omitted as of tibble 2.0.0.
-#> Using compatibility `.name_repair`.
-#> This warning is displayed once every 8 hours.
-#> Call `lifecycle::last_warnings()` to see where this warning was generated.
 
 glimpse(rosters)
 #> Rows: 16
@@ -124,23 +116,6 @@ data on CBLOL official games.
 ``` r
 
 games <- getData_games(Year = 2020, Split = c("Split 2","Split 2 Playoffs"))
-#> It may take a while...
-#> Warning in janitor::row_to_names(., remove_row = TRUE, row_number = 2):
-#> Row 2 does not provide unique names. Consider running clean_names() after
-#> row_to_names().
-#> Warning in matrix(picks_bans, nrow = nrows, ncol = 16, byrow = TRUE):
-#> comprimento dos dados [840] não é um submúltiplo ou múltiplo do número de
-#> colunas [16]
-#> Warning: Expected 2 pieces. Additional pieces discarded in 84 rows [1, 2, 3, 4,
-#> 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ...].
-#> Warning in janitor::row_to_names(., remove_row = TRUE, row_number = 2):
-#> Row 2 does not provide unique names. Consider running clean_names() after
-#> row_to_names().
-#> Warning in matrix(picks_bans, nrow = nrows, ncol = 16, byrow = TRUE):
-#> comprimento dos dados [140] não é um submúltiplo ou múltiplo do número de
-#> colunas [16]
-#> Warning: Expected 2 pieces. Additional pieces discarded in 14 rows [1, 2, 3, 4,
-#> 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].
 glimpse(games)
 #> Rows: 98
 #> Columns: 13
@@ -167,17 +142,6 @@ data on champions played in CBLOL official games.
 champion <- getData_champion(Role = "Mid",
                              Year = 2020, 
                              Split = c("Split 2","Split 2 Playoffs"))
-#> It may take a while...
-#> Warning in janitor::row_to_names(., remove_row = TRUE, row_number = 3):
-#> Row 3 does not provide unique names. Consider running clean_names() after
-#> row_to_names().
-#> Warning: Expected 2 pieces. Additional pieces discarded in 28 rows [1, 2, 3, 4,
-#> 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ...].
-#> Warning in janitor::row_to_names(., remove_row = TRUE, row_number = 3):
-#> Row 3 does not provide unique names. Consider running clean_names() after
-#> row_to_names().
-#> Warning: Expected 2 pieces. Additional pieces discarded in 13 rows [1, 2, 3, 4,
-#> 5, 6, 7, 8, 9, 10, 11, 12, 13].
 glimpse(champion)
 #> Rows: 41
 #> Columns: 21
@@ -212,16 +176,6 @@ data of players in CBLOL official games.
 players <- getData_players(Role = "Jungle", 
                            Year = 2020, 
                            Split = c("Split 2","Split 2 Playoffs"))
-#> Be patient, it may take a while...
-#> Warning in janitor::row_to_names(., remove_row = TRUE, row_number = 3):
-#> Row 3 does not provide unique names. Consider running clean_names() after
-#> row_to_names().
-#> Warning: Expected 2 pieces. Additional pieces discarded in 12 rows [1, 2, 3, 4,
-#> 5, 6, 7, 8, 9, 10, 11, 12].
-#> Warning in janitor::row_to_names(., remove_row = TRUE, row_number = 3):
-#> Row 3 does not provide unique names. Consider running clean_names() after
-#> row_to_names().
-#> Warning: Expected 2 pieces. Additional pieces discarded in 4 rows [1, 2, 3, 4].
 
 glimpse(players)
 #> Rows: 16
@@ -259,119 +213,6 @@ players_champion <- getData_playersChampion(Role = "Jungle",
                                             Year = 2020, 
                                             Split = c("Split 2",
                                                       "Split 2 Playoffs"))
-#> Be patient, it may take a while...
-#> Warning: Expected 2 pieces. Additional pieces discarded in 1 rows [1].
-#> Warning: Expected 2 pieces. Missing pieces filled with `NA` in 13 rows [2, 3, 4,
-#> 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].
-#> Warning in janitor::row_to_names(., remove_row = TRUE, row_number = 3):
-#> Row 3 does not provide unique names. Consider running clean_names() after
-#> row_to_names().
-#> Warning: Expected 2 pieces. Additional pieces discarded in 1 rows [1].
-#> Warning: Expected 2 pieces. Missing pieces filled with `NA` in 13 rows [2, 3, 4,
-#> 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].
-#> Warning in janitor::row_to_names(., remove_row = TRUE, row_number = 3):
-#> Row 3 does not provide unique names. Consider running clean_names() after
-#> row_to_names().
-#> Warning: Expected 2 pieces. Additional pieces discarded in 1 rows [1].
-#> Warning: Expected 2 pieces. Missing pieces filled with `NA` in 14 rows [2, 3, 4,
-#> 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].
-#> Warning in janitor::row_to_names(., remove_row = TRUE, row_number = 3):
-#> Row 3 does not provide unique names. Consider running clean_names() after
-#> row_to_names().
-#> Warning: Expected 2 pieces. Additional pieces discarded in 1 rows [1].
-#> Warning: Expected 2 pieces. Missing pieces filled with `NA` in 15 rows [2, 3, 4,
-#> 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].
-#> Warning in janitor::row_to_names(., remove_row = TRUE, row_number = 3):
-#> Row 3 does not provide unique names. Consider running clean_names() after
-#> row_to_names().
-#> Warning: Expected 2 pieces. Additional pieces discarded in 1 rows [1].
-#> Warning: Expected 2 pieces. Missing pieces filled with `NA` in 15 rows [2, 3, 4,
-#> 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].
-#> Warning in janitor::row_to_names(., remove_row = TRUE, row_number = 3):
-#> Row 3 does not provide unique names. Consider running clean_names() after
-#> row_to_names().
-#> Warning: Expected 2 pieces. Additional pieces discarded in 1 rows [1].
-#> Warning: Expected 2 pieces. Missing pieces filled with `NA` in 14 rows [2, 3, 4,
-#> 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].
-#> Warning in janitor::row_to_names(., remove_row = TRUE, row_number = 3):
-#> Row 3 does not provide unique names. Consider running clean_names() after
-#> row_to_names().
-#> Warning: Expected 2 pieces. Additional pieces discarded in 1 rows [1].
-#> Warning: Expected 2 pieces. Missing pieces filled with `NA` in 12 rows [2, 3, 4,
-#> 5, 6, 7, 8, 9, 10, 11, 12, 13].
-#> Warning in janitor::row_to_names(., remove_row = TRUE, row_number = 3):
-#> Row 3 does not provide unique names. Consider running clean_names() after
-#> row_to_names().
-#> Warning: Expected 2 pieces. Additional pieces discarded in 1 rows [1].
-#> Warning: Expected 2 pieces. Missing pieces filled with `NA` in 15 rows [2, 3, 4,
-#> 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16].
-#> Warning in janitor::row_to_names(., remove_row = TRUE, row_number = 3):
-#> Row 3 does not provide unique names. Consider running clean_names() after
-#> row_to_names().
-#> Warning: Expected 2 pieces. Additional pieces discarded in 1 rows [1].
-#> Warning: Expected 2 pieces. Missing pieces filled with `NA` in 12 rows [2, 3, 4,
-#> 5, 6, 7, 8, 9, 10, 11, 12, 13].
-#> Warning in janitor::row_to_names(., remove_row = TRUE, row_number = 3):
-#> Row 3 does not provide unique names. Consider running clean_names() after
-#> row_to_names().
-#> Warning: Expected 2 pieces. Additional pieces discarded in 1 rows [1].
-#> Warning: Expected 2 pieces. Missing pieces filled with `NA` in 7 rows [2, 3, 4,
-#> 5, 6, 7, 8].
-#> Warning in janitor::row_to_names(., remove_row = TRUE, row_number = 3):
-#> Row 3 does not provide unique names. Consider running clean_names() after
-#> row_to_names().
-#> Warning: Expected 2 pieces. Additional pieces discarded in 1 rows [1].
-#> Warning: Expected 2 pieces. Missing pieces filled with `NA` in 5 rows [2, 3, 4,
-#> 5, 6].
-#> Warning in janitor::row_to_names(., remove_row = TRUE, row_number = 3):
-#> Row 3 does not provide unique names. Consider running clean_names() after
-#> row_to_names().
-#> Warning: Expected 2 pieces. Additional pieces discarded in 1 rows [1].
-#> Warning: Expected 2 pieces. Missing pieces filled with `NA` in 5 rows [2, 3, 4,
-#> 5, 6].
-#> Warning in janitor::row_to_names(., remove_row = TRUE, row_number = 3):
-#> Row 3 does not provide unique names. Consider running clean_names() after
-#> row_to_names().
-#> Warning: Expected 2 pieces. Additional pieces discarded in 1 rows [1].
-#> Warning: Expected 2 pieces. Missing pieces filled with `NA` in 5 rows [2, 3, 4,
-#> 5, 6].
-#> Warning in janitor::row_to_names(., remove_row = TRUE, row_number = 3):
-#> Row 3 does not provide unique names. Consider running clean_names() after
-#> row_to_names().
-#> Warning: Expected 2 pieces. Additional pieces discarded in 84 rows [1, 2, 3, 4,
-#> 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, ...].
-#> Warning: Expected 2 pieces. Additional pieces discarded in 1 rows [1].
-#> Warning: Expected 2 pieces. Missing pieces filled with `NA` in 10 rows [2, 3, 4,
-#> 5, 6, 7, 8, 9, 10, 11].
-#> Warning in janitor::row_to_names(., remove_row = TRUE, row_number = 3):
-#> Row 3 does not provide unique names. Consider running clean_names() after
-#> row_to_names().
-#> Warning: Expected 2 pieces. Additional pieces discarded in 1 rows [1].
-#> Warning: Expected 2 pieces. Missing pieces filled with `NA` in 10 rows [2, 3, 4,
-#> 5, 6, 7, 8, 9, 10, 11].
-#> Warning in janitor::row_to_names(., remove_row = TRUE, row_number = 3):
-#> Row 3 does not provide unique names. Consider running clean_names() after
-#> row_to_names().
-#> Warning: Expected 2 pieces. Additional pieces discarded in 1 rows [1].
-#> Warning: Expected 2 pieces. Missing pieces filled with `NA` in 9 rows [2, 3, 4,
-#> 5, 6, 7, 8, 9, 10].
-#> Warning in janitor::row_to_names(., remove_row = TRUE, row_number = 3):
-#> Row 3 does not provide unique names. Consider running clean_names() after
-#> row_to_names().
-#> Warning: Expected 2 pieces. Additional pieces discarded in 1 rows [1].
-#> Warning: Expected 2 pieces. Missing pieces filled with `NA` in 7 rows [2, 3, 4,
-#> 5, 6, 7, 8].
-#> Warning in janitor::row_to_names(., remove_row = TRUE, row_number = 3):
-#> Row 3 does not provide unique names. Consider running clean_names() after
-#> row_to_names().
-#> Warning: Expected 2 pieces. Additional pieces discarded in 1 rows [1].
-#> Warning: Expected 2 pieces. Missing pieces filled with `NA` in 8 rows [2, 3, 4,
-#> 5, 6, 7, 8, 9].
-#> Warning in janitor::row_to_names(., remove_row = TRUE, row_number = 3):
-#> Row 3 does not provide unique names. Consider running clean_names() after
-#> row_to_names().
-#> Warning: Expected 2 pieces. Additional pieces discarded in 18 rows [1, 2, 3, 4,
-#> 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18].
 
 glimpse(players_champion)
 #> Rows: 102
