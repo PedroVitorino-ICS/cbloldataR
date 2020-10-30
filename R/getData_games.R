@@ -97,8 +97,9 @@ getData_games <- function(Team = NULL, Year, Split) {
       dplyr::filter(stringr::str_detect(value, "RunQuery")) %>%
       purrr::flatten_chr() -> query_link
 
+    query_link_lido <- xml2::read_html(query_link)
 
-    xml2::read_html(query_link) %>%
+    query_link_lido %>%
       rvest::html_nodes("div.wide-content-scroll") %>%
       rvest::html_nodes("table") %>%
       rvest::html_table(fill = TRUE, header = FALSE) -> tables
@@ -113,7 +114,7 @@ getData_games <- function(Team = NULL, Year, Split) {
       dplyr::select(-c(3:9)) -> tab1
 
 
-    xml2::read_html(query_link) %>%
+    query_link_lido %>%
       rvest::html_node("table") %>%
       rvest::html_nodes("tr") %>%
       rvest::html_text() -> nrows
@@ -122,7 +123,7 @@ getData_games <- function(Team = NULL, Year, Split) {
 
 
 
-    xml2::read_html(query_link) %>%
+    query_link_lido %>%
       rvest::html_node("table") %>%
       rvest::html_nodes("tbody") %>%
       rvest::html_nodes(xpath = "//td[@class='mhgame-result']") %>%
@@ -145,7 +146,7 @@ getData_games <- function(Team = NULL, Year, Split) {
     tab2 <- cbind(tab1, result)
 
 
-    xml2::read_html(query_link) %>%
+    query_link_lido %>%
       rvest::html_node("table") %>%
       rvest::html_nodes("tbody") %>%
       rvest::html_nodes(xpath = "//td[@class='mhgame-bans']") %>%

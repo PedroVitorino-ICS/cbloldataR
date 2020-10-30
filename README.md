@@ -256,4 +256,6 @@ on [GitHub](https://github.com/pedrodrocha/cbloldataR/issues).
   - Version: 0.0.0.9003 - 11.09.2020 - editing how arguments are written
     while calling the package functions.
   - Version: 0.0.0.9004 - 16.10.2020 - improving tests and error
-    handling
+    handling.
+  - Version: 0.0.0.9005 - 30.10.2020 - minor changes in html reading
+    dynamics.

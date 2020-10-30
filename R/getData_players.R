@@ -116,8 +116,9 @@ getData_players <- function(Role, Year, Split, Playerid = NULL, Team = NULL){
 
   get_estatistica_jogadores <- function(url, Roles = Role) {
 
+    url_lido <- xml2::read_html(url)
 
-    xml2::read_html(url) %>%
+    url_lido %>%
       rvest::html_nodes("th") %>%
       rvest::html_nodes("table") %>%
       rvest::html_nodes("td") %>%
@@ -125,7 +126,7 @@ getData_players <- function(Role, Year, Split, Playerid = NULL, Team = NULL){
       rvest::html_text() -> vector_roles
 
 
-    links_por_role <- xml2::read_html(url) %>%
+    links_por_role <- url_lido %>%
       rvest::html_nodes("th") %>%
       rvest::html_nodes("table") %>%
       rvest::html_nodes("td") %>%
@@ -145,7 +146,9 @@ getData_players <- function(Role, Year, Split, Playerid = NULL, Team = NULL){
 
     get_roles <- function(url_role) {
 
-      xml2::read_html(url_role) %>%
+      url_role_lido <- xml2::read_html(url_role)
+
+      url_role_lido %>%
         rvest::html_nodes("table") %>%
         rvest::html_table(fill = TRUE, header = FALSE) -> tab
 
@@ -154,7 +157,7 @@ getData_players <- function(Role, Year, Split, Playerid = NULL, Team = NULL){
       role <- purrr::flatten_chr(stringr::str_extract_all(tab[[1]]$X1[1],roles))
 
 
-      xml2::read_html(url_role) %>%
+      url_role_lido %>%
         rvest::html_node("table") %>%
         rvest::html_nodes("tbody") %>%
         rvest::html_nodes(xpath = "//td[@class='spstats-team']") %>%

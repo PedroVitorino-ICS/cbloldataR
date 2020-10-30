@@ -137,4 +137,5 @@ If you encounter a clear bug, please file a minimal reproducible example on [Git
 * Version: 0.0.0.9001 - 08.08.2020 - fixing issues with AD Carry entries in both `getData_players()` and `getData_playersChampion()`.
 * Version: 0.0.0.9002 - 23.08.2020 - adding 2020/2 PlayOffs.
 * Version: 0.0.0.9003 - 11.09.2020 - editing how arguments are written while calling the package functions.
-* Version: 0.0.0.9004 - 16.10.2020 - improving tests and error handling
+* Version: 0.0.0.9004 - 16.10.2020 - improving tests and error handling.
+* Version: 0.0.0.9005 - 30.10.2020 - minor changes in html reading dynamics.

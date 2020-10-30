@@ -61,7 +61,7 @@ getData_playersChampion <- function(Role, Year, Split, Playerid = NULL, Champion
   }
 
 
-  url = "https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends"
+  url <- "https://lol.gamepedia.com/Circuit_Brazilian_League_of_Legends"
 
   message("Be patient, it may take a while...")
 
@@ -118,9 +118,9 @@ getData_playersChampion <- function(Role, Year, Split, Playerid = NULL, Champion
 
   get_estatistica_jogadores <- function(url,Roles = Role) {
 
+    url_lido <- xml2::read_html(url)
 
-
-    xml2::read_html(url) %>%
+    url_lido %>%
       rvest::html_nodes("th") %>%
       rvest::html_nodes("table") %>%
       rvest::html_nodes("td") %>%
@@ -128,7 +128,7 @@ getData_playersChampion <- function(Role, Year, Split, Playerid = NULL, Champion
       rvest::html_text() -> vector_roles
 
 
-    links_por_role <- xml2::read_html(url) %>%
+    links_por_role <- url_lido %>%
       rvest::html_nodes("th") %>%
       rvest::html_nodes("table") %>%
       rvest::html_nodes("td") %>%

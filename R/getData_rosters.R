@@ -121,7 +121,9 @@ getData_rosters <- function(Playerid = NULL, Team = NULL, Split, Year, Role) {
 
   equipes_cblol <- function(url) {
 
-    xml2::read_html(url) %>%
+    url_lido <- xml2::read_html(url)
+
+    url_lido %>%
       rvest::html_nodes("h3") %>%
       rvest::html_nodes("span") %>%
       rvest::html_attr("id") %>%
@@ -134,7 +136,7 @@ getData_rosters <- function(Playerid = NULL, Team = NULL, Split, Year, Role) {
       purrr::flatten_chr() -> equipes
 
 
-    xml2::read_html(url) %>%
+    url_lido %>%
       rvest::html_nodes("div.wide-content-scroll") %>%
       rvest::html_nodes("table") %>%
       rvest::html_table(fill = TRUE) -> tables
@@ -164,7 +166,7 @@ getData_rosters <- function(Playerid = NULL, Team = NULL, Split, Year, Role) {
         )
       ) -> elenco
 
-    xml2::read_html(url) %>%
+    url_lido %>%
       rvest::html_node("table") %>%
       rvest::html_nodes("tbody") %>%
       rvest::html_nodes(xpath = "//td[@class='extended-rosters-role']") %>%

@@ -111,9 +111,9 @@ getData_champion <- function(Role, Year, Split, Champion = NULL){
 
   get_campeoes <- function(url, Roles = Role){
 
+    url_lido <- xml2::read_html(url)
 
-
-    xml2::read_html(url) %>%
+    url_lido %>%
       rvest::html_nodes("th") %>%
       rvest::html_nodes("table") %>%
       rvest::html_nodes("td") %>%
@@ -121,7 +121,7 @@ getData_champion <- function(Role, Year, Split, Champion = NULL){
       rvest::html_text() -> vector_roles
 
 
-    links_por_role <- xml2::read_html(url) %>%
+    links_por_role <- url_lido %>%
       rvest::html_nodes("th") %>%
       rvest::html_nodes("table") %>%
       rvest::html_nodes("td") %>%
