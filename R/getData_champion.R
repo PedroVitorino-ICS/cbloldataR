@@ -15,7 +15,8 @@
 getData_champion <- function(Role, Year, Split, Champion = NULL){
 
 
-
+  old <- options(warn = 0)
+  options(warn = -1)
 
   if(!is.null(Champion)){
     if(typeof(Champion) != "character"){
@@ -139,6 +140,7 @@ getData_champion <- function(Role, Year, Split, Champion = NULL){
 
     get_roles <- function(url_role) {
 
+
       xml2::read_html(url_role) %>%
         rvest::html_nodes("table") %>%
         rvest::html_table(fill = TRUE, header = FALSE) -> tab
@@ -153,6 +155,7 @@ getData_champion <- function(Role, Year, Split, Champion = NULL){
         janitor::clean_names() %>%
         dplyr::na_if("-") %>%
         dplyr::mutate(role = role) -> dat
+
 
       return(dat)
 
@@ -200,7 +203,7 @@ getData_champion <- function(Role, Year, Split, Champion = NULL){
       dplyr::filter(champion %in% Champion) %>%
       dplyr::mutate(league = "CBLOL")
 
-
+    on.exit(options(old), add = TRUE)
     if (nrow(campeoes) == 0) {
       rlang::abort(message = "There is no data for this entry")
     }
