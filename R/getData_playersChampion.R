@@ -16,6 +16,9 @@
 
 getData_playersChampion <- function(Role, Year, Split, Playerid = NULL, Champion = NULL){
 
+  old <- options(warn = 0)
+  options(warn = -1)
+
   if(!is.null(Playerid)){
     if(typeof(Playerid) != "character"){
       type <- typeof(Playerid)
@@ -283,7 +286,7 @@ getData_playersChampion <- function(Role, Year, Split, Playerid = NULL, Champion
                   year = as.numeric(year))
 
 
-
+  on.exit(options(old), add = TRUE)
 
   if (nrow(estatistica_jogadores_campeao) == 0) {
     rlang::abort(message = "There is no data for this entry")
